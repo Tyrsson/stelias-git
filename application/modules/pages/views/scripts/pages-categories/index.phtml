@@ -1,0 +1,15 @@
+<h2>Album List</h2>
+<?php
+if(isset($this->albums)) {
+    //Zend_Debug::dump($this->albums);
+
+            if(is_object($this->albums)) { ?>
+            <ul id="">
+         <?php  foreach($this->albums as $album) { ?>
+                    <li><?php echo ucwords(str_replace('_', ' ', $album->albumName))?><a href="/media/upload">upload</a></li>
+       <?php    } ?>
+       		</ul>
+       <?php 
+    		}
+}
+?>

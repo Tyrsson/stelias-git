@@ -1,0 +1,18 @@
+<?php
+if (isset ( $_GET ['token'] )) {
+	$paypal = new Zend_Service_PayPal_Nvp ( $authInfo );
+	$coDetails = $paypal->getExpressCheckoutDetails ( $_GET ['token'] );
+	
+	if ($coDetails->isSuccess () && ($payerId = $coDetails->getValue ( 'PAYERID' ))) {
+		// We could present the user with final information here... but we won't
+		// ;)
+		$response = $paypal->doExpressCheckoutPayment ( $_GET ['token'], $coDetails->getValue ( 'PAYERID' ), $_SESSION ['last_ammount'] );
+		
+		if ($response->isSuccess ()) {
+			// We got money!
+			echo 'WE HAVE MONEY';
+		} else {
+			
+		}
+	}
+}

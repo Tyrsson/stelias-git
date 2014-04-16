@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<admin>
+		<adminnav>
+			<label>Admin</label>
+			<uri>/admin/index</uri>
+			<resource>admin:area</resource>
+			<privilege>view</privilege>
+			<order>999</order>
+		</adminnav>
+	</admin>
+    <admin-admin>
+            <general-settings>
+                <label>General Settings</label>
+                <uri>/admin/settings</uri>
+                <resource>admin:area</resource>
+                <privilege>manage-all</privilege>
+                <order>100</order>
+            </general-settings>
+            <create-cats>
+                <label>Create Category</label>
+                <uri>/admin/categories/create</uri>
+                <resource>admin:area</resource>
+                <privilege>manage-all</privilege>
+                <order>100</order>
+            </create-cats>
+        	<dxtools>
+            	<label>Dxadmin Summary</label>
+            	<uri>/admin/dxadmin/summary</uri>
+            	<resource>dxadmin-tools</resource>
+            	<privilege>dxadmin.manage.all</privilege>
+            	<order>1000</order>
+            	<class>menuitem</class>
+            	<pages>
+					<skin-settings>
+	            		<label>Skin Settings</label>
+						<uri>/admin/skins/settings</uri>
+						<resource>dxadmin-tools</resource>
+	            		<privilege>dxadmin.manage.all</privilege>
+			    		<order>2</order>
+					</skin-settings>
+	        		<addmodsettings>
+	            		<label>Add Module Settings</label>
+						<uri>/admin/settings/addmodsettings</uri>
+						<resource>dxadmin-tools</resource>
+	            		<privilege>dxadmin.manage.all</privilege>
+			    		<order>4</order>
+	        		</addmodsettings>
+	        		<edit-lang>
+	        		    <label>Edit Language Strings</label>
+	        		    <uri>/admin/language</uri>
+	        		    <resource>dxadmin-tools</resource>
+	            		<privilege>dxadmin.manage.all</privilege>
+	            		<order>5</order>
+	        		</edit-lang>
+	        		<add-lang>
+	        		    <label>Add Language Strings</label>
+	        		    <uri>/admin/language/add</uri>
+	        		    <resource>dxadmin-tools</resource>
+	            		<privilege>dxadmin.manage.all</privilege>
+	            		<order>6</order>
+	        		</add-lang>
+        		</pages>
+        	</dxtools>
+    </admin-admin>
+</config>

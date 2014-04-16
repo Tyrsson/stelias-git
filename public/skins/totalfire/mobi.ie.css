@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+#action_wrapper {
+	    filter:alpha(opacity=60);
+}
+.maindivider {
+    box-shadow: #666 0px 2px 3px;
+}

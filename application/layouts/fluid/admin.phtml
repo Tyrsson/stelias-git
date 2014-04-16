@@ -1,0 +1,108 @@
+<?php
+/* Start html output
+ * Set a valid doctype
+ */
+//Print doctype to browser
+echo $this->doctype();
+?>
+<html <?php echo $this->xmlnsHelper();?>>
+<head>
+        <?php
+        //Set formatted output indent TODO: Needs tweaked
+        $this->headMeta()->setIndent('    ') . "\n";
+        $this->seoHelper($this->keyWords);
+        //Print to browser
+        echo $this->headMeta();
+        //Set title seperator
+        $this->headTitle()->setSeparator(' - ');
+
+        /* Please note this will be prepended too through out the script
+         * @uses Dxcore_Controller_Plugin_Pagetitle
+         */
+        //Set the default page title
+        echo $this->siteName();
+        ?>
+
+        <base href="<?php /* This allows the server protocol to determine the base*/ echo $this->scheme .'://'. $this->host; ?>/" />
+        <?php
+        $this->headLink()->prependStylesheet($this->scheme.'://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', 'screen');
+
+		//Any remaining styles?
+        $this->siteStyles();
+        echo $this->headStyle();
+        echo $this->headLink();
+        
+        $this->jQuery()->addJavascript('jQuery(function(){
+                                            jQuery(".navigation").addClass("section menu");
+                                            jQuery(".navigation li ul").addClass("submenu");
+                                       });');
+        // html body div.container_16 div.grid_4 div.box ul.navigation li ul
+
+        if($this->jQuery()->isEnabled() || $this->jQuery()->uiIsEnabled()) :
+            if($this->scheme === 'https') {
+                $this->jQuery()->setCdnSsl(true);
+            }
+            //$this->headLink()->prependStylesheet('/skins/default/jq-aurora/jquery-ui-1.8.23.custom.css', 'screen');
+			echo $this->jQuery();
+		endif;
+
+        echo $this->headScript();
+
+        ?>
+</head>
+<body>
+<div class="container_16">
+    <div class="grid_16">
+	    <h1 id="branding" class="logo">
+	        <span>Admin Area</span>
+        </h1>
+	</div>
+	<div class="clear"></div>
+    <div class="grid_16">
+        <div class="box spacer">
+            <?php //echo $this->navigation()->breadcrumbs()->setMinDepth(0)->setLinkLast(true)->setSeparator('<span class="arrow"><span class="hidden"> &gt; </span></span>'); ?>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="grid_4">
+        <div class="box menu">
+		    <h2>
+			    <a href="#" id="toggle-section-menu">Admin Menu</a>
+			</h2>
+			<div class="block" id="section-menu">
+              <?php
+              echo $this->navigation(Zend_Registry::get('Admin_Navigation'));
+              ?>
+            </div>
+        </div>
+    </div> 
+    <div class="grid_8">
+        <div class="box">
+            <?php echo $this->layout()->content; ?>
+        </div>
+    </div>
+    <div class="grid_4">
+        <div class="box">
+            <h2>
+			    <a href="#" id="toggle-user-info">User Info</a>
+			</h2>
+			<div id="user-info">
+		        <span>Welcome back <?php echo !empty($this->user->firstName) ? $this->user->firstName : $this->user->userName . ' ' . $this->user->lastName ?></span>
+		        <span><?php echo $this->user->email ?></span>
+		        <br />
+		        <a href="/">Return Home</a><br />
+		        <a href="/user/login/logout">Logout</a>
+		    </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+	<div class="grid_16" id="site_info">
+	    <div class="box">
+    	    <p>Aurora CMS &copy; <a href="http://clients.dirextion.com">DireXtion</a> . <span class="pushapart">|</span> All Rights Reserved</p>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<?php
+/* Start html output
+ * Set a valid doctype
+ */
+//Print doctype to browser
+echo $this->doctype();
+//$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')->appendHttpEquiv('Content-Language', 'en-US');
+?>
+<html <?php echo $this->xmlnsHelper();?>>
+<head>
+        <?php
+        //Set formatted output indent TODO: Needs tweaked
+        $this->headMeta()->setIndent('    ') . "\n";
+        $this->seoHelper($this->keyWords);
+        //Print to browser
+        echo $this->headMeta();
+        //Set title seperator
+        $this->headTitle()->setSeparator(' - ');
+
+        /* Please note this will be prepended too through out the script
+         * @uses Dxcore_Controller_Plugin_Pagetitle
+         */
+        //Set the default page title
+        echo $this->siteName();
+        $slider = $this->imageSlider();
+        ?>
+
+        <base href="<?php /* This allows the server protocol to determine the base*/ echo $this->scheme .'://'. $this->host; ?>/" />
+        <?php
+        $this->headLink()->prependStylesheet($this->scheme.'://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', 'screen');
+        if($this->jQuery()->isEnabled()) {
+			$this->headLink()->prependStylesheet('/skins/default/jq-aurora/jquery-ui-1.8.23.custom.css', 'screen');
+		}
+		//Any remaining styles?
+        $this->mobileStyles();
+        echo $this->headStyle();
+        echo $this->headLink();
+
+        if($this->slideShow) {
+			$this->dojo()->enable()
+			->setDjConfigOption('parseOnLoad', true)
+			->requireModule('dojox.image.Lightbox');
+			Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
+		}
+
+        //If and only if Dojo is enabled and called (do we need it? if yes) print it to the browser
+        $body = 'body';
+        if ($this->dojo()->isEnabled()):
+            $body = 'body class="nihilo"';
+        	echo $this->dojo();
+        endif;
+
+        if($this->jQuery()->isEnabled() || $this->jQuery()->uiIsEnabled()) :
+            if($this->scheme === 'https') {
+                $this->jQuery()->setCdnSsl(true);
+            }
+			echo $this->jQuery();
+		endif;
+
+        echo $this->headScript();
+
+        ?>
+</head>
+<<?php echo $body;?>>
+<div id="wrapper">
+	<div id="master-container">
+		<div id="header">
+		Mobile Layout
+			<div id="logo"></div>
+		</div>
+			<div id="menu">
+					<?php echo $this->navigation()->menu();?>
+					<hr></hr>
+			</div><!-- end of menu-->
+			<?php
+			if(isset($this->messages))
+			{
+		    	if(is_array($this->messages))
+		    	{
+		        	implode($this->messages);
+		    	}
+		    	else {
+					echo $this->messages;
+				}
+			}
+			echo $this->layout()->content; ?>
+
+			<div id="footer"><!-- footer normally begins here -->
+				<hr></hr>
+				<div id="copyright">
+					<a><?php echo $this->appSettings->siteName; ?>&nbsp;&nbsp;|&nbsp;&nbsp;&copy;&nbsp;
+						<?php
+						$startYear = 2011; $thisYear = date('Y');
+						if ($startYear == $thisYear) :
+    						echo $startYear;
+ 						else :
+    						echo "{$startYear}-{$thisYear}";
+						endif;
+						?>
+					</a>
+				</div><!-- end of copyright-->
+			</div><!-- end of footer-->
+		</div><!-- end of master-container-->
+  </div><!-- end of wrapper-->
+</body>
+</html>

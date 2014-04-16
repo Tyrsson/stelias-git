@@ -1,0 +1,35 @@
+<div id="content">
+	<h2>Featured Products</h2>
+	
+	<?php 
+	if(isset($this->featured) && (is_object($this->featured) || is_array($this->featured) ) ) {
+	?>
+		<ul id="product-list">
+	<?php foreach($this->featured as $product) { 
+	      if($product->image !== '')
+	      {
+	      	$url = $product->image;
+	      } else {
+	      	$url = 'http://dummyimage.com/126x101/8B5629/fff.png&text=No+Image+Selected';
+	      }
+		?>
+		<li class="featured">
+			<img src="<?php echo $url; ?>" /> 
+		<h3><?php echo empty($product->name) ? $product->ident : $product->name; ?></h3>
+		<a href="/products/display/<?php echo $product->productId; ?>">Details</a>
+		</li>
+	<?php } ?>
+		</ul>
+		<?php 
+	}
+	?>
+	
+<div id="news">
+	<h2><?php echo $this->page->title; ?></h2>
+	<?php echo $this->page->aContent; ?>
+</div>
+
+</div>
+<?php $this->headStyle()->captureStart(); ?>
+
+<?php $this->headStyle()->captureEnd(); ?>

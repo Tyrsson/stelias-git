@@ -1,0 +1,13 @@
+/* IE8 SPECIFIC STYLESHEET */
+
+#subAlbumContainerBody {
+/*	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#cccccc');*/
+	border-radius: 0 0 0 1.5em;
+	background-color: #cccccc;
+}
+
+#images-container {
+/*	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#cccccc');*/
+	border-radius: 0 0 1.5em 0;
+	background-color: #cccccc;
+}

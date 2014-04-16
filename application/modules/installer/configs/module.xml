@@ -1,0 +1,21 @@
+<configs>
+    <admin-installer>
+        <installer-index>
+        	<label>Installer</label>
+			<uri>/admin/installer</uri>
+			<resource>dxadmin-tools</resource>
+	        <privilege>dxadmin.manage.all</privilege>
+			<order>1001</order>
+			<class>menuitem</class>
+			<pages>
+			    <install-skin>
+			        <label>Install Skin</label>
+					<uri>/admin/installer/installskin</uri>
+					<resource>dxadmin-tools</resource>
+	            	<privilege>dxadmin.manage.all</privilege>
+					<order>1002</order>
+			    </install-skin>
+			</pages>
+		</installer-index>
+    </admin-installer>
+</configs>

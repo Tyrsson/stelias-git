@@ -1,0 +1,9 @@
+<div id="contact-widget">
+<?php 
+if(isset($this->messages)) {
+    echo $this->implode($this->messages);
+}
+if(isset($this->contactForm)) :
+			echo $this->contactForm;
+endif;?>
+</div>

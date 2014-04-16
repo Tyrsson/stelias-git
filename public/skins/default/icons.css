@@ -1,0 +1,27 @@
+.controls {
+	/*border:1px solid orange;*/
+	margin: 2% 0 0 92%;
+	width: 80px;
+}
+
+.controls a {text-decoration: none;}
+
+.create {
+	background: url(./icons/icon-create.png) no-repeat;
+	width:20px;
+	height:20px;
+	padding:10px;
+}
+
+.edit {
+	background: url(./icons/icon-edit.png) no-repeat;
+	width:20px;
+	height:20px;
+	padding:10px;
+}
+.delete {
+	background: url(./icons/icon-delete.png) no-repeat;
+	width:20px;
+	height:20px;
+	padding:10px;
+}

@@ -1,0 +1,19 @@
+<config>
+	<admin-gateway>
+	    <admin-main>
+	        <label>Payment Gateways</label>
+            <uri>/admin/gateway</uri>
+            <resource>dxadmin-tools</resource>
+            <privilege>dxadmin.manage.all</privilege>
+            <class>menuitem</class>
+            <pages>
+                <paypal>
+                    <label>Paypal</label>
+                    <uri>/admin/gateway/paypal</uri>
+                    <resource>dxadmin-tools</resource>
+                    <privilege>dxadmin.manage.all</privilege>
+                </paypal>
+            </pages>
+	    </admin-main>
+	</admin-gateway>
+</config>

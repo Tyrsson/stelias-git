@@ -1,0 +1,37 @@
+<?php 
+$date = new Zend_Date();
+?>
+<div class="left">
+	<h2>Approve Testimonials</h2>
+<div style="background-color:#fff; Opacity:80%;">
+<?php if (count($this->paginator)): ?>
+<?php foreach($this->paginator as $entry): ?>
+<div class="gb_entry_list">  
+       <?php 
+       if(is_object($entry)) :
+       ?>
+       <dl class="news_details">
+       <dt>Guest Name:&nbsp;<?php echo $entry->guestName;?></dt>
+       <dt>Created On:&nbsp;<?php echo new Zend_Date($entry->createdDate, Zend_Date::TIMESTAMP);?></dt>
+       <dt>Updated On:&nbsp;<?php echo new Zend_Date($entry->updatedDate, Zend_Date::TIMESTAMP);?></dt>
+       <?php 
+           if( ($this->user->isLogged ) && $this->acl->isAllowed($this->user->getRole(), 'testimonials', 'admin:edit:entry')) :
+        ?>
+        <dt><a href="/admin/testimonials/edit/<?php echo $entry->id; ?>">Edit</a></dt>
+        <?php if($entry->isApproved === '0') : ?>
+        <dt><a href="/admin/testimonials/approve/<?php echo $this->pageNumber; ?>/<?php echo $entry->id; ?>">Approve</a></dt>
+        <?php endif;?>
+        <?php 
+           endif;
+        ?>
+        </dl>
+        <div class="entry_body"><?php echo substr($entry->content, 0, 255), '<span class="entry_details"><a href="/testimonials/display/',$entry->id,'">&nbsp;...View More</a></span>' ;?></div>
+       <?php 
+       endif;
+       ?>
+</div>
+<?php endforeach; ?>
+<?php endif; ?>
+<?php echo $this->paginationControl($this->paginator,'Sliding','pagination_control.phtml'); ?>
+</div>
+</div>

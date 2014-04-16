@@ -1,0 +1,77 @@
+<?php 
+$auth = Zend_Auth::getInstance();
+// Identity exists; get it
+$identity = $auth->getIdentity();
+$acl = new User_Acl_Acl();
+$role = new User_Acl_Role_User();
+//$role = $userRole->getRoleId();
+//Zend_Debug::dump($role, true);
+?>
+<h2>User List</h2>
+<?php 
+//Zend_Debug::dump($this->paginate(), true);
+//echo $this->paginate();
+//Zend_Debug::dump($this->paginator);
+?>
+
+<?php if (count($this->paginator)) { ?>
+    <table id="userlist">
+    <tr id="headings">
+        <th>User Id</th>
+        <th>Group</th>
+        <th>UserName</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Actions</th>
+<!--         <th>&nbsp;</th> -->
+    </tr>
+          <?php foreach($this->paginator as $user) { ?>
+    <tr>
+        <td><?php echo $user->userId;?></td>
+        <td><?php echo $user->role;?></td>
+        <td><?php echo $user->userName;?></td>
+        <td><?php echo $user->firstName;?></td>
+        <td><?php echo $user->lastName;?></td>
+        <?php 
+        if ($acl->isAllowed($role, 'admin:area', 'admin:edit')) :
+        ?>
+        <td><?php echo '<a href="/admin/user/delete/' . $this->page . '/' . $user->userId . '">Delete</a>';?></td>
+        <td><?php echo '<a href="/admin/user/edit/',$user->userId,'">Edit</a>';?></td>
+        <td><?php echo '<a href="/user/account/summary/?uid=',$user->userId,'">View Summary</a>';?></td>
+        <?php 
+        endif;
+        ?>       
+    </tr>
+<?php } ?>
+</table>
+
+<?php } ?>
+   <?php echo $this->paginationControl($this->paginator,'Sliding','pagination_control_admin.phtml'); ?>
+<?php 
+$this->headStyle()->captureStart();
+?>
+#userlist{
+width:100%;
+border: 1px solid red;
+}
+#userlist tr {
+border:1px solid #830001;
+}
+#userlist tr th {
+
+border-left: 1px solid #830001;
+border-right: 1px solid #830001;
+}
+#userlist tr td {
+height: 15px;
+border-left: 1px solid black;
+border-right: 1px solid black;
+border-bottom: 1px solid black;
+text-align:center;
+}
+#userlist tr .headings {
+border:
+}
+<?php 
+$this->headStyle()->captureEnd();
+?>

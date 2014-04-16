@@ -1,0 +1,55 @@
+<?php
+if(isset($this->page) && $this->page !== null) 
+{
+
+   if($this->appSettings->displayPageHeading) 
+   {
+       //echo ucwords( $this->page['pageName'] );
+   }
+?>      
+    <div data-dojo-type="dijit/layout/ContentPane" title="<?php echo $this->page['pageName']; ?>">	               
+        <?php
+        if(isset($this->allowEdit) && $this->allowEdit === true) 
+        {
+        ?>
+            <div id="adminToolBar">
+                <a class="linkButton" href="/admin/pages/create" title="create"><span>Create</span></a>
+                <a class="linkButton" href="/admin/pages/edit/<?php echo $this->page['pageUrl']; ?>" title="edit"><span>Edit</span></a>
+    	          <?php
+                     if( $this->page['pageUrl'] != 'home') 
+                     {
+                  ?>
+    	        <a class="linkButton" href="/admin/pages/delete/<?php echo $this->page['pageUrl']; ?>" title="delete"><span>Delete</span></a>
+    	       <?php } ?>
+    	    </div>
+        <?php
+        }
+        echo $this->page['pageText'];
+        if(isset($this->widget)) {
+           echo $this->{$this->widget};
+        }
+        ?>
+    </div>
+    <?php 
+    $i = 0;
+    if(count($this->subPages)) {
+        foreach ($this->subPages as $sub) {          
+    ?>
+            <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="href: '<?php echo $this->subPages[$i]['pageUrl']; ?>', title: '<?php echo $this->subPages[$i]['pageName']; ?>'">
+            <?php 
+                echo $this->subPages[$i]['pageText']; 
+            ?>
+            </div>
+        <?php 
+        $i++;
+        }
+    }   
+    ?>
+    <?php
+    if($this->showFb) {
+        //echo $this->faceBookHelper($this->fb, $fbTitle = $this->page['pageName'], $fbType = null, $fbUrl = null, $fbImage = null, $fbsiteName = null, $type = 'page');
+    }
+} else {
+    // page would be null
+}
+?>

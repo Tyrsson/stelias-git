@@ -1,0 +1,28 @@
+<?php
+if ($this->pageCount):
+?>
+<div class="subAlbum-pagination-control">
+     <!-- Previous page link -->
+    <?php
+    if (isset($this->previous)):
+    ?>
+      <a href="<?php echo "/$this->pageName?albumName=$this->albumName&amp;action=$this->action&amp;page=$this->page&amp;subAlbumPage=$this->previous#media-gallery"; ?>"><span class="previous">&laquo;&nbsp;Prev</span></a>
+      <?php else: ?>
+      <span class="disabled">&laquo;&nbsp;Prev</span>
+<?php endif; ?>
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $subAlbumPage): ?>
+  <?php if ($subAlbumPage != $this->current): ?>
+    <a href="<?php echo "/$this->pageName?albumName=$this->albumName&amp;action=$this->action&amp;page=$this->page&amp;subAlbumPage=$subAlbumPage#media-gallery"; ?>"><span class="page"><?php echo $subAlbumPage; ?></span></a>
+  <?php else: ?>
+    <span class="current"><?php echo $subAlbumPage; ?></span>
+  <?php endif; ?>
+<?php endforeach; ?>
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <a href="<?php echo "/$this->pageName?albumName=$this->albumName&amp;action=$this->action&amp;page=$this->page&amp;subAlbumPage=$this->next#media-gallery"; ?>"><span class="next">Next&nbsp;&raquo;</span></a>
+<?php else: ?>
+  <span class="disabled">Next&nbsp;&raquo;</span>
+<?php endif; ?>
+</div>
+<?php endif; ?>

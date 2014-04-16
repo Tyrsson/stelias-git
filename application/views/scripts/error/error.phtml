@@ -1,0 +1,43 @@
+<div id="content">
+	<div id="error-content">  
+		
+		<h1>...OOPS SOMETHING WENT WRONG!</h1>
+		<?php echo $this->message ?>
+
+			<p>It seems that the page you were trying to reach doesn't exist anymore, or maybe it has just moved. Please feel free to contact us if the problem persists.</p>
+
+			<p>It might help to start from the <a href="/">homepage.</a></p>
+			
+
+  		<?php if (isset($this->exception)): ?>
+  
+  		<h3>Exception information:</h3>
+  		<p>
+      		<b>Message:</b> <?php echo $this->exception->getMessage() ?>
+  		</p>
+
+  		<h3>Stack trace:</h3>
+  		<pre><?php echo $this->exception->getTraceAsString() ?></pre>
+
+  		<h3>Request Parameters:</h3>
+  		<pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?></pre>
+
+  		<?php endif ?>
+  </div>
+</div>
+<?php $this->headStyle()->captureStart(); ?>
+#error-content {
+width:100%;
+margin:0 auto 0 auto;
+line-height: 24px;
+}
+#error-content img {margin: 100px auto 100px auto; display: block;}
+
+#error-content h1 {font-size: 40px; color: #F7931E; text-align: center; margin: 30px;}
+
+#error-content h2 {font-size: 20px; text-align: center; font-weight: 700;}
+
+#error-content p {text-align: center;}
+
+#error-content a {color: #F7931E; text-decoration: none;}
+<?php $this->headStyle()->captureEnd(); ?>

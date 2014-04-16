@@ -1,0 +1,267 @@
+@charset "utf-8";
+
+h2 {
+	margin-bottom: 10px;
+}
+img {
+	padding: 10px;
+}
+.gallery {
+    margin:0 auto 0 auto;
+}
+/* #page-body {
+	height: auto;
+}
+#page-content {
+	height: auto;
+} */
+.album-icon {
+    float: left;
+    margin: 20px 20px;
+}
+
+.album-icon a {
+    color: #F7931E;
+}
+
+#widget-container {
+	/* margin-top: 10px !important; */
+}
+#media-albums-container {
+	width: 90%;
+    margin: 20px auto 0 auto;
+	height:auto;
+	min-height:200px;
+}
+#media-gallery {
+	height: auto;
+	margin: 0 auto 0 auto;
+    padding: 10px;
+    padding-bottom:20px;
+	/* border-radius: 8px;
+    -moz-border-radius:8px;
+	box-shadow: inset 0 0 10px #444;
+    -mox-box-shadow:inset 0 0 10px #444; */
+}
+#media-gallery a:link {
+	/* color:#000; */
+}
+#media-gallery-header {
+	/* width: 99%; */
+	height: 5px;
+	background-color: #f7931e;
+	margin: 10px auto 10px auto;
+/* 	border-radius: 8px;
+    -moz-border-radius:8px;
+	box-shadow: inset 0 0 10px #444;
+    -mox-box-shadow:inset 0 0 10px #444; */
+	padding-top: 5px;
+}
+h3.media-sub-title {
+	padding-left: 10px;
+}
+#images-header {
+	height: 5px;
+	background-color: #f7931e;
+	margin: 10px auto 10px auto;
+/* 	border-radius: 8px;
+    -moz-border-radius:8px;
+	box-shadow: inset 0 0 10px #444;
+    -mox-box-shadow:inset 0 0 10px #444; */
+	padding-top: 5px;
+}
+#subAlbum-container {
+	max-width: 99%; 
+	min-height: 170px;
+    height:170px;
+    margin:0 auto 0 auto;
+    
+}
+#subAlbumContainerBody {
+    min-height: 200px;
+    /* background: -webkit-gradient(linear, left top, left bottom, from(#E6E6E6), to(#CCC)); */
+    border-bottom-left-radius: 1.5em;
+    /* background: -moz-linear-gradient(top, #E6E6E6, #CCCCCC); */
+}
+/*
+The -moz- and a -ms- prefixed rules are used for compatibility 
+with older versions (Fx 3.6 to Fx 15, IE 10 Platform Previews and Consumer Preview).
+*/
+.mediaGrad {
+    background-color: #E6E6E6; /* fall back for non gradient browsers */
+    background: -webkit-gradient(linear, left top, left bottom, from(#E6E6E6), to(#CCC)); /* Chrome 3 to 9 and Safari 4.0 to 5.0. */
+    background-image: -webkit-linear-gradient(top, #E6E6E6, #CCC);
+    background-image: -moz-linear-gradient(top, #E6E6E6, #CCC); /* For Fx 3.6 to Fx 15 */
+    background-image: -ms-linear-gradient(top, #E6E6E6, #CCC); /* For IE 10 Platform Previews and Consumer Preview */
+    background-image: -o-linear-gradient(top, #E6E6E6, #CCC); /* For Opera 11.1 to 12.0 */
+    background-image: linear-gradient(to bottom, #E6E6E6, #CCC); /* Standard syntax; must be the last statement */
+}
+.subAlbum-link-container {
+	height: 150px;
+	width: 150px;
+	float: left;
+    margin:-15px 10px 0 10px;
+}
+.subAlbum-link {}
+.album-icon {}
+.subAlbum-name {
+	margin: 130px 0 0 0;
+    padding: 20px;
+    padding-left:50px;
+    position:absolute;
+	text-align: center;
+    clear:both;
+}
+#subAlbum-paginator {}
+.subAlbum-pagination-control, .gallery-thumbs-pagination-control {
+	font-size: 1em;
+    line-height: 1em; 
+    /* vertical-align:middle; */
+	height:1.5em; 
+    clear:both;
+    /* text-align:center; */
+}
+.gallery-thumbs-pagination-control {
+    width:99%;
+    margin: 30px auto 0 auto;
+    text-align:center;
+    padding: 10px;
+}
+.subAlbum-pagination-control {
+    margin: 0 0 0 0;
+    text-align: right;
+    padding: 10px;
+}
+.pagination-control {
+	width: 100%;
+	margin: 0 auto 0 auto;
+	text-align: center;
+}
+.subAlbum-pagination-control a, .gallery-thumbs-pagination-control a {
+	border-radius: 1px;
+}
+.subAlbum-pagination-control a:link,
+.subAlbum-pagination-control a:visited,
+.subAlbum-pagination-control a:hover, 
+.gallery-thumbs-pagination-control a:link,
+.gallery-thumbs-pagination-control a:visited,
+.gallery-thumbs-pagination-control a:hover {
+	color:#ffffff;
+	font-weight: bold;
+	text-decoration:none;
+}
+.current {
+	font-weight:bold;
+	color: white;
+	background-color: black !important;
+}
+.disabled {
+	font-weight: bold;
+	color: #ccc;
+}
+.previous, .current, .next, .page, .disabled {
+    background-color: #A7A9AC;
+    padding: .1em .6em .1em .6em !important;
+    margin-right: 5px;
+}
+.previous:hover, .current:hover, .next:hover, .page:hover {
+	background-color: #F7931E;
+    /*box-shadow: 1px 1px 1px rgba(0,0,0,0.07);
+    border: 1px solid #ccc;
+    border-left: 1px solid #bbb;
+    border-top: 1px solid #aaa;
+    border-radius: 1px;*/
+}
+.next {
+    font-size:1em;
+    padding: 0 0 0 0;
+}
+.media-gallery-breadcrumbs {
+	padding: 4px;
+	font-size: 1em;
+position:relative;
+z-index:503;
+}
+.media-gallery-breadcrumbs a {
+	text-decoration: none;
+}
+.media-gallery-breadcrumbs a:link,
+.media-gallery-breadcrumbs a:hover, 
+.media-gallery-breadcrumbs a:visited {
+	color: #000;
+}
+.media-gallery-breadcrumbs a:last-child {
+	color: #F7931E;
+}
+#images-container {
+	min-height: 200px;
+	/* background: -webkit-gradient(linear, left top, left bottom, from(#E6E6E6), to(#CCC)); */
+	border-bottom-right-radius: 1.5em;
+	/* background: -moz-linear-gradient(top, #E6E6E6, #CCCCCC); */
+	padding-bottom: 30px;
+}
+#images {
+	width: 95%;
+    height:100%;
+    min-height:400px;
+	margin: 0 auto 0 auto;
+	/* border: 1px solid green; */
+    /* overflow:hidden; */
+}
+#thumbs {
+	width: 99%;
+	/* float: left; */ 
+    /* overflow:hidden;  */
+    margin-top: 10px;
+}
+#thumbnails {
+	width:300px;
+    margin: 0 auto 0 auto;
+    /* overflow:hidden;  */
+}
+#thumbnails img {max-height: 75px; max-width: 75px;}
+.thumbnail-links {
+	width: 95px;
+	min-width: 95px;
+	height: 95px;
+	min-height: 95px;
+	margin: 1px;
+	display: block;
+	float: left;
+	background-color: #CAC9C9;
+}
+.thumnail-links:focus {
+	border:none;
+    outline:none;
+}
+#main-gallery-image {
+    width: 100%;
+    margin: 15px 0 0 0;
+    padding: 0;
+    border: none;
+}
+#ajaxed-container {
+
+}
+#main-image-header {
+	height: 0px;
+    margin: 0 auto 10px auto;
+/*     border-radius: 6px;
+    -moz-border-radius:8px;
+    box-shadow: inset 0 0 10px #444;
+    -mox-box-shadow:inset 0 0 10px #444; */
+    padding-left: 10px;
+}
+#main-image-info {}
+.gallery-image-title {
+    margin:0;
+    padding:0;
+    font-weight: bold;
+	color: #F7931E;
+}
+#gallery-image-desc {}
+#ajaxed-image {
+	width: 90%;
+    min-height:100%;
+	margin: 0 auto;
+}

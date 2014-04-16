@@ -1,0 +1,45 @@
+<config>
+	<usernav>
+		<register>
+			<label>Register</label>
+			<uri>/user/register</uri>
+			<resource>user</resource>
+			<privilege>user.register</privilege> 
+			<order>1001</order>
+			<hassetting>true</hassetting>
+			<setting>enableRegistration</setting>
+		</register>
+		<login>
+			<label>Login</label>
+			<uri>/user/login</uri>
+			<resource>user</resource>
+			<privilege>user.login</privilege> 
+			<class>settings-controlled</class>
+			<order>1002</order>
+			<hassetting>true</hassetting>
+			<setting>enableMainMenuLogin</setting>
+		</login>
+	    <logout>
+			<label>Logout</label>
+			<uri>/user/login/logout</uri>
+			<resource>user</resource>
+			<privilege>user.logout</privilege>
+			<order>1002</order>
+		</logout>
+		<account>
+			<label>Account</label>
+			<uri>/user/account/summary</uri>
+			<resource>user</resource>
+			<privilege>user.account-editown</privilege>
+			<order>1000</order>
+		</account> 
+	</usernav>
+	<adminusernav>
+	    <uadminedit>
+	        <label>Admin Users</label>
+	        <uri>/admin/user/userlist</uri>
+	        <resource>user</resource>
+	        <privilege>admin.edit.user</privilege>
+	    </uadminedit>
+	</adminusernav>
+</config>

@@ -1,0 +1,2 @@
+<?php
+class System_Service_Authorize_Data_Exception extends System_Service_Authorize_Exception {}

@@ -1,0 +1,23 @@
+<div class="user-success-content">
+  <div id="user-success-form">
+	<h2>Success</h2>
+		<?php 
+			$this->headMeta()->appendHttpEquiv('Refresh', '2;URL='.$this->scheme.'://'.$_SERVER['SERVER_NAME']);
+			if(isset($this->message) || isset($this->messages)):
+		?>
+				<span class="script_message">
+				<?php
+				if(is_array($this->messages))
+				{
+		    		echo implode($this->messages);
+				} else {
+		    		echo $this->message;
+				}?>
+				</span>
+		<?php 
+		endif 
+		?>
+  </div>
+</div>
+
+

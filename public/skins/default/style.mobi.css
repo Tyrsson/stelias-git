@@ -1,0 +1,234 @@
+@charset "utf-8";
+
+@import url("icons.css");
+@import url("media.mobi.css");
+
+#wrapper {
+	width:100%;
+	background: transparent url(./images/bg-repeat.png) repeat-x;
+	margin: 0px auto 0px auto;
+	min-width: 400px;
+}
+
+#master-container {
+	width: 100%;
+	height: auto;
+	min-height: 400px;
+	margin: 0 auto;
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#header {
+	width: 100%;
+	margin-bottom: 0px;
+	float: right;
+}
+
+hr {
+	border-color: black;
+	background-color: black;
+}
+
+b {
+	font-weight: bold;
+}
+
+p {
+	line-height: 25px !important;
+}
+
+h1 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 700;
+	font-size: 32px;
+	color: #F7931E;
+}
+
+h2 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 700;
+	font-size: 32px;
+	color: #F7931E;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 700;
+	font-size: 22px;
+	color: #F7931E;
+	text-transform: uppercase;
+}
+
+h4 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+	color: #000;
+	text-transform: uppercase;
+}
+
+#logo {
+	width: 335px;
+	height: 95px;
+	margin-top: 15px;
+	background: transparent url(./images/logo.png) top center no-repeat;
+	display: block;
+}
+
+.slideshow {
+	width: 1024px;
+}
+
+#footer {
+	
+}
+
+#footer hr {
+	margin-top: 40px;
+}
+
+/******************************************************** Menu Styles **********************************************/
+#menu {
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.navigation {
+	margin: 0 0 0 0;
+	padding-top: 50px;
+	text-transform: uppercase;
+}
+
+.navigation li {
+	margin: 2px 0px 5px 0px;
+	padding: 0 0 0 10px;
+	line-height: 20px;
+	font-weight: normal;
+	white-space: nowrap;
+	display: inline;
+}
+/* Set the menu tab style for the active tab */
+ul.navigation li.active a {
+	color: black;
+	background: #F7931E;
+}
+/* Active tab on hover highlight */
+ul.navigation li.active a:hover {
+	background: #F7931E;
+	color: black;
+	width: 100%;
+	height: 100%;
+}
+
+/* Not yet implemented in current style */
+ul.navigation li.active ul {
+	color: green;
+}
+
+.navigation li a {
+	margin: 10px 5px 10px -10px;
+	padding: 2px 20px 2px 20px;
+	white-space: nowrap;
+	font-weight: 700;
+	color: #222; /*Top level font color*/
+	text-decoration: none;
+	transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-webkit-transition: .25s ease-in-out;
+}
+/* Top level on hover highlight */
+.navigation li a:hover {
+	background: #F7931E;
+	color: black;
+}
+
+/* Copyright notice */
+#copyright {
+	background: transparent;
+	text-align: center;
+	text-decoration: none;
+}
+
+.dxX {
+	font-size: 14px;
+	color: red;
+	font-weight: bold;
+}
+
+/******************************************************** Page Styles **********************************************/
+#page-wrapper {
+	clear: both;
+	margin-top: 15px;
+}
+
+#page-content {
+	width: 100%;
+	min-height: 700px;
+	margin: 0 auto;
+	/*border:1px solid green;*/
+}
+
+#page-body {
+	
+}
+
+#page-body h2 {
+	margin-bottom: 10px;
+}
+
+/******************************************************** Footer **********************************************/
+
+/******************************************************** Widgets **********************************************/
+.widget-heading-bg {
+	background-color: orange;
+}
+
+.page-widget {
+	margin: 10px auto 0 auto;
+	width: 100%;
+	height: 250px;
+	border-bottom: #000 2px solid;
+	border-top: #000 2px solid;
+}
+
+.widget-item {
+	margin: 20px 10px 10px 20px;
+	float: left;
+	width: 30%;
+	height: 200px;
+	background-color: #e6e6e6;
+}
+
+.widget-item-head {
+	width: 100%;
+	height: 9px;
+}
+
+.widget-item h3 {
+	padding: 5px;
+	font-size: 1.25em;
+	color: #666;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-align: center;
+}
+
+.widget-page-text {
+	padding: 5px;
+	font-size: 1em;
+	word-break: break-all;
+	margin-bottom: 5px;
+}
+
+.widget-readmore {
+	margin: 10px auto 0 auto;
+	width: 100px;
+	height: 20px;
+	padding: 5px;
+}
+
+.widget-readmore a:link,.widget-readmore a:visited,.widget-readmore a:hover
+	{
+	text-decoration: none;
+	color: #000;
+}

@@ -1,0 +1,33 @@
+<div class="grid_8 prefix_5">
+<div class="box">
+<?php 
+if($this->appSettings->enableRegistration) {
+ 
+    if(isset($this->form)) {
+?>
+
+<?php //echo strtoupper($this->form->getName()); ?>
+
+<?php 
+        if(isset($this->messages) || isset($this->message)) {
+    	
+    	    if(is_array($this->messages)) {
+    		
+    		    echo '<span>', implode($this->messages) ,'</span>';
+    		
+    	    } 
+    	    else {
+    		    echo $this->message;
+    	    }
+        }
+    	echo $this->form; 
+    }
+
+} else {
+?>
+<span id="registration-diasabled" class="system-message">Registration is Disabled</span>
+<?php 
+}
+?>
+</div>
+</div>

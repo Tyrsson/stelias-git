@@ -1,0 +1,228 @@
+@import url("//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dijit/themes/claro/claro.css");
+html,body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #D6CDAB;
+}
+/* div#appLayout {
+	background-color: #403027;
+} */
+img {
+	display:block;
+	margin: 0 auto;
+}
+img#mainPane {
+/* 	margin-top: 10%; */
+	width:90%;
+}
+/* Dojo styles */
+.claro .dijitBorderContainer {
+    background-color: #D6CDAB;
+}
+.edgePanel {
+	background-color: white;
+}
+div#tabs {
+	border: 0 none;
+}
+/* light borders */
+
+.claro .dijitAccordionInnerContainer,
+.claro .dijitAccordionInnerContainerHover,
+.claro .dijitAccordionInnerContainerActive,
+.claro .dijitAccordionContainer .dijitAccordionChildWrapper
+{
+	border: solid 1px #D6CDAB;
+}
+/* Dark Borders */
+.claro .dijitTab,
+.claro .dijitSplitContainer-child, 
+.claro .dijitBorderContainer-child
+{
+	border: 1px #403027 solid; 
+}
+
+.claro .dijitAccordionInnerContainerSelected,
+.claro .dijitTabPaneWrapper,  
+.claro .dijitTabContainerTop-tabs,
+.claro .dijitTabContainerBottom-tabs,
+.claro .dijitTabContainerLeft-tabs,
+.claro .dijitTabContainerRight-tabs {
+  /* todo: add common class name for this div */
+
+  border-color: #403027;
+}
+
+.claro .dijitSplitContainer-dijitContentPane, .claro .dijitBorderContainer-dijitContentPane {
+    background-color : white;
+    color : #403027;
+}
+.claro .dijitTab {
+    background-color : #D6CDAB;
+    color : #403027;
+}
+.claro .dijitTabContainerTop-tabs .dijitTab {
+    background-image : -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(90%, #D6CDAB), color-stop(90%, #D6CDAB), color-stop(90%, rgba(255, 255, 255, 0.6)), color-stop(90%, #D6CDAB));
+    background-image : -o-linear-gradient(#ffffff, #D6CDAB 90%, #D6CDAB 90%, rgba(255, 255, 255, 0.6) 90%, #D6CDAB 90%);
+    background-image : -ms-linear-gradient(#ffffff, #D6CDAB 90%, #D6CDAB 90%, rgba(255, 255, 255, 0.6) 90%, #D6CDAB 90%);
+    background-image : -moz-linear-gradient(#ffffff, #D6CDAB 90%, #D6CDAB 90%, rgba(255, 255, 255, 0.6) 90%, #D6CDAB 90%);
+    background-image : -webkit-linear-gradient(#ffffff, #D6CDAB 90%, #D6CDAB 90%, rgba(255, 255, 255, 0.6) 90%, #D6CDAB 90%);
+    background-image : linear-gradient(#ffffff, #D6CDAB 90%, #D6CDAB 90%, rgba(255, 255, 255, 0.6) 90%, #D6CDAB 90%);
+}
+
+.claro .dijitAccordionInnerContainer {
+    background-color : #D6CDAB;
+} 
+.claro .dijitAccordionTitle {
+    background-image : -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.7)), color-stop(80%, rgba(255, 255, 255, 0)), color-stop(90%, rgba(255, 255, 255, 0)));
+    background-image : -o-linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0) 90%);
+    background-image : -ms-linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0) 90%);
+    background-image : -moz-linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0) 90%);
+    background-image : -webkit-linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0) 90%);
+    background-image : linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0) 90%);
+    color : #403027;
+}
+
+/* nested layouts */
+.claro .dijitTabContainerTop-dijitContentPane,
+.claro .dijitTabContainerLeft-dijitContentPane,
+.claro .dijitTabContainerBottom-dijitContentPane,
+.claro .dijitTabContainerRight-dijitContentPane,
+.claro .dijitAccordionContainer-dijitContentPane {
+  background-color: #D6CDAB;
+  padding: 8px; 
+}
+.claro .dijitSplitContainer-dijitContentPane,
+.claro .dijitBorderContainer-dijitContentPane {
+  background-color: #D6CDAB;
+  padding: 8px; 
+}
+
+/* .claro .dijitTabStripIcon {
+  height: 15px;
+  width: 15px;
+  margin: 0 auto;
+  background: url("./form/images/buttonArrows.png") no-repeat -75px 50%;
+  background-color: transparent;
+} */
+
+
+.claro .dijitAccordionInnerContainerActive .dijitAccordionTitle {
+    color : #403027;
+}
+.claro .dijitAccordionInnerContainerActive {
+    background-color : #D6CDAB;
+}
+.claro .dijitAccordionInnerContainerHover .dijitAccordionTitle {
+    color : #403027;
+}
+
+.claro .dijitTabContainerTop-dijitContentPane, .claro .dijitTabContainerLeft-dijitContentPane, .claro .dijitTabContainerBottom-dijitContentPane, .claro .dijitTabContainerRight-dijitContentPane, .claro .dijitAccordionContainer-dijitContentPane {
+    background-color : #D6CDAB;
+}
+/* .claro .dijitAccordionContainer .dijitAccordionContainer-child {
+    background-color : white;
+} */
+.claro .globalWidget .dijitTabActive {
+    background-color : #0d0b0a;
+}
+.claro .dijitTabActive {
+    background-color : #0d0b0a;
+}
+.claro .dijitSplitterHActive, .claro .dijitSplitterVActive {
+    background-color : #0d0b0a;
+}
+.claro .dijitButtonActive .dijitButtonNode, .claro .dijitDropDownButtonActive .dijitButtonNode, .claro .dijitComboButtonActive .dijitButtonNode, .claro .dijitToggleButtonActive .dijitButtonNode, .claro .dijitToggleButtonChecked .dijitButtonNode {
+    background-color : #0d0b0a;
+}
+.claro .dijitTitlePaneTitleActive {
+    background-color : #0d0b0a;
+}
+.claro .dijitToolbar .dijitButtonActive .dijitButtonNode, .claro .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode, .claro .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+    background-color : #0d0b0a;
+}
+.claro .globalWidget .dijitTabChecked {
+    background-color : #1b1c1d;
+}
+.claro .dijitTabChecked {
+    background-color : #1b1c1d;
+}
+.claro .dijitCalendarHover, .claro .dijitCalendarActive, .claro .dijitCalendar:hover {
+    background-color : #2d221c;
+}
+.claro .globalWidget .dijitTabHover {
+    background-color : #2d221c;
+}
+.claro .dijitTabHover {
+    background-color : #2d221c;
+}
+.claro .dijitButtonHover .dijitButtonNode, .claro .dijitDropDownButtonHover .dijitButtonNode, .claro .dijitComboButton .dijitButtonNodeHover, .claro .dijitComboButton .dijitDownArrowButtonHover, .claro .dijitToggleButtonHover .dijitButtonNode {
+    background-color : #2d221c;
+}
+.claro .dijitAccordionInnerContainerHover, .claro .dijitAccordionInnerContainerSelectedActive {
+    background-color : #2d221c;
+}
+.claro .dijitAccordionInnerContainerSelectedHover .dijitAccordionChildWrapper, .claro .dijitAccordionInnerContainerSelectedActive .dijitAccordionChildWrapper {
+    background-color : #2d221c;
+}
+.claro .dijitTitlePaneTitleHover {
+    background-color : #2d221c;
+}
+.claro .dijitToolbar .dijitButtonHover .dijitButtonNode, .claro .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode, .claro .dijitToolbar .dijitToggleButtonHover .dijitButtonNode, .claro .dijitToolbar .dijitComboButtonHover .dijitButtonNode {
+    background-color : #2d221c;
+}
+.claro .dijitSplitterHHover, .claro .dijitSplitterVHover {
+    background-color : #2d221c;
+}
+.claro .dijitSelectMenu .dijitMenuItemHover td, .claro .dijitSelectMenu .dijitMenuItemSelected td, .claro .dijitMenuItemHover, .claro .dijitMenuItemSelected {
+    background-color : #2d221c;
+}
+.claro .dijitAccordionInnerContainerSelected {
+    background-color : #3b2c24;
+}
+.claro .dijitSelect, .claro .dijitTextBox {
+    background-color : #553d34;
+}
+.claro .dijitTextBoxFocused {
+    background-color : #80111d;
+}
+.claro .dijitTextBoxHover {
+    background-color : #473b33;
+}
+.claro .dijitCalendarPreviousMonth .dijitCalendarDateLabel, .claro .dijitCalendarNextMonth .dijitCalendarDateLabel {
+    background-color : #2e4049;
+}
+.claro .dijitCalendarSelectedDate .dijitCalendarDateLabel {
+    background-color : #4b382e;
+}
+.claro .dijitCalendarHoveredDate .dijitCalendarDateLabel, .claro .dijitCalendarEnabledDate:hover .dijitCalendarDateLabel {
+    background-color : #211b18;
+}
+
+/* custom ruleZ please do not modify */
+.linkButton {
+
+  border: 1px solid #403027;
+  padding: 2px 4px 4px 4px;
+  color: #fff;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  background-color: #403027;
+/*   background-image: url("images/buttonEnabled.png"); */
+/*   background-repeat: repeat-x; */
+  background-image: -moz-linear-gradient(#ffffff 0px, rgba(255, 255, 255, 0) 3px, rgba(255, 255, 255, 0.75) 100%);
+  background-image: -webkit-linear-gradient(#ffffff 0px, rgba(255, 255, 255, 0) 3px, rgba(255, 255, 255, 0.75) 100%);
+  background-image: -o-linear-gradient(#ffffff 0px, rgba(255, 255, 255, 0) 3px, rgba(255, 255, 255, 0.75) 100%);
+  background-image: linear-gradient(#ffffff 0px, rgba(255, 255, 255, 0) 3px, rgba(255, 255, 255, 0.75) 100%);
+  _background-image: none;
+}
+ul li.buttonList {
+	margin: 1em 0;
+}
+div#adminToolBar {
+	margin: 1em 0;
+}

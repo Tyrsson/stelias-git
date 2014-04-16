@@ -1,0 +1,113 @@
+@charset "UTF-8";
+/* CSS Document */
+/* dirextion cms accordion */
+	#accordion div.title, #accordion div.nontitle, #cmslink div.title, #cms div.fixedtitle { 
+		background: #5b5b5b;
+		cursor: pointer;
+		display: block;
+		height: 30px;
+		line-height: 30px;
+		position:relative;
+	}
+	
+	#accordion .navigation li{
+		background: #5b5b5b;
+		cursor: pointer;
+		display: block;
+		height: 30px;
+		line-height: 30px;
+		position:relative;
+	}
+	
+	#accordion .navigation li ul{
+		display:none;
+	}
+	
+	#accordion .navigation li:first-child{
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		-webkit-border-top-left-radius: 5px; 
+		-webkit-border-top-right-radius: 5px;
+	}
+	
+	#accordion ul#navigation li:last-child {
+		-moz-border-radius-bottomleft: 5px;
+		-moz-border-radius-bottomright: 5px;
+		-webkit-border-bottom-left-radius: 5px; 
+		-webkit-border-bottom-right-radius: 5px;
+	}
+	
+	#accordion li.selected {
+		-moz-border-radius-bottomleft: 0;
+		-moz-border-radius-bottomright: 0;
+		-webkit-border-bottom-left-radius: 0; 
+		-webkit-border-bottom-right-radius: 0;
+	}
+	
+	#accordion li.selected span{
+		background-position: -48px -128px !important;
+	}
+	
+	#accordion li.title span{
+		background-image:url(/css/admin/images/icons.png);
+		background-position: -16px -128px;
+		width:16px;
+		height:16px;
+		position:absolute;
+		left:10px;
+		top:5px;
+	
+	}
+	
+	#accordion .menu, #cmslink .menu, #accordion .menu li { background: #c3c3c3; }
+	#accordion .menu a, #cmslink .menu a { color: #444; }
+	#accordion .top {
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		-webkit-border-top-left-radius: 5px; 
+		-webkit-border-top-right-radius: 5px;
+	}
+	#accordion .bottom{
+		-moz-border-radius-bottomleft: 5px;
+		-moz-border-radius-bottomright: 5px;
+		-webkit-border-bottom-left-radius: 5px; 
+		-webkit-border-bottom-right-radius: 5px;
+	}
+	#accordion a.marketingicon { background: url(/css/admin/images/marketingicon.png) no-repeat center left; }
+	#accordion a.rfpicon { background: url(/css/admin/images/rfpicon.png) no-repeat center left; }
+	#accordion a.logosicon { background: url(/css/admin/images/logosicon.png) no-repeat center left; }
+	#accordion a.trainingvideosicon { background: url(/css/admin/images/trainingvideosicon.png) no-repeat center left; }
+	#accordion a.presentationicon { background: url(/css/admin/images/presentationicon.png) no-repeat center left; }
+	#accordion a.formicon { background: url(/css/admin/images/formicon.png) no-repeat center left; }
+	#accordion a.pressreleaseicon { background: url(/css/admin/images/pressreleaseicon.png) no-repeat center left; }
+	#accordion a.emaillinkicon { background: url(/css/admin/images/emaillinkicon.png) no-repeat center left; }
+	#accordion a.cmsdemoicon { background: url(/css/admin/images/cmsicon.png) no-repeat center left; }
+	#accordion ul li ul, #cmslink ul { 
+		list-style: none;
+		padding: 8px 0 8px 8px;
+	}
+	#accordion li, #cmslink li { padding-bottom: 5px; }
+/* content management accordion */
+	#cmslink div.title, #cms div.fixedtitle {
+		background: url(/css/admin/images/dirextion-dashboard-link-bkg.jpg) repeat-x;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px; 
+	}
+	#cmslink .menu {
+		-moz-border-radius-bottomleft: 5px;
+		-moz-border-radius-bottomright: 5px;
+		-webkit-border-bottom-left-radius: 5px; 
+		-webkit-border-bottom-right-radius: 5px;
+	}
+	#cmslink a.cmsicon { background: url(/css/admin/images/contentmgmticon.png) no-repeat center left; }
+	#cmslink { margin-bottom: 20px; }
+	#cmslink div.selected {
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-topright: 5px;
+		-webkit-border-top-left-radius: 5px; 
+		-webkit-border-top-right-radius: 5px;
+		-moz-border-radius-bottomleft: 0;
+		-moz-border-radius-bottomright: 0;
+		-webkit-border-bottom-left-radius: 0; 
+		-webkit-border-bottom-right-radius: 0;
+	}

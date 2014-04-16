@@ -1,0 +1,193 @@
+<?php
+/* Start html output
+ * Set a valid doctype
+ */
+//Print doctype to browser
+echo $this->doctype();
+//$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')->appendHttpEquiv('Content-Language', 'en-US');
+?>
+<html <?php echo $this->xmlnsHelper();?>>
+<head>
+        <?php
+        //Set formatted output indent TODO: Needs tweaked
+        $this->headMeta()->setIndent('    ') . "\n";
+        $this->seoHelper($this->keyWords);
+        //Print to browser
+        echo $this->headMeta();
+        //Set title seperator
+        $this->headTitle()->setSeparator(' - ');
+
+        /* Please note this will be prepended too through out the script
+         * @uses Dxcore_Controller_Plugin_Pagetitle
+         */
+        //Set the default page title
+        echo $this->siteName();
+        ?>
+
+        <base href="<?php /* This allows the server protocol to determine the base*/ echo $this->scheme .'://'. $this->host; ?>/" />
+        <?php
+        $this->headLink()->prependStylesheet($this->scheme.'://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', 'screen');
+        if($this->jQuery()->isEnabled()) {
+			$this->headLink()->prependStylesheet('/skins/default/jq-aurora/jquery-ui-1.8.23.custom.css', 'screen');
+		}
+		//Any remaining styles?
+        $this->siteStyles();
+
+        echo $this->headLink();
+        echo $this->headStyle();
+
+//         if($this->slideShow) {
+// 			$this->dojo()->enable()
+// 			->setDjConfigOption('parseOnLoad', true)
+// 			->requireModule('dojox.image.Lightbox');
+// 			Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
+// 		}
+
+        //If and only if Dojo is enabled and called (do we need it? if yes) print it to the browser
+//         $body = 'body';
+//         if ($this->dojo()->isEnabled()):
+//             $body = 'body class="nihilo"';
+//         	echo $this->dojo();
+//         endif;
+
+        if($this->jQuery()->isEnabled() || $this->jQuery()->uiIsEnabled()) :
+            if($this->scheme === 'https') {
+                $this->jQuery()->setCdnSsl(true);
+            }
+			echo $this->jQuery();
+
+			//$this->headScript()->appendFile('/js-src/aurora.js', 'text/javascript', null);
+
+		endif;
+
+        echo $this->headScript();
+
+        ?>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <div id="logo">
+    		<?php
+    		    echo $this->appSettings->enableLinkLogo ? '<a href="/"><img src="/skins/'.$this->skinName.'/images/logo.png" alt="Logo" /></a>' : '<img src="/skins/'.$this->skinName.'/images/logo.png" alt="Logo" />';
+    		?>
+        </div>
+		<div id="search-widget">
+    		<?php
+		    if($this->appSettings->enableSearch && !IS_MOBILE)
+		    {
+		        echo new Search_Form_QuickSearch();
+		    }
+    		?>
+		</div>
+		<?php if(!IS_MOBILE) {?>
+		<div id="contact-info">
+		    <div id="contact-info-blurb"><?php echo !empty($this->appSettings->headerBlurbText) ? $this->appSettings->headerBlurbText : '' ?></div>
+		    <div id="contact-info-number"><?php echo !empty($this->appSettings->headerPhoneNumber) ? $this->appSettings->headerPhoneNumber : '' ?></div>
+		</div>
+		<?php } ?>
+		<div id="menu">
+		    <?php
+		    if(!IS_MOBILE)
+		    echo $this->navigation()->menu();
+		    ?>
+		</div><!-- close menu-->
+		<div style="clear:both;"></div>
+    </div><!-- close header -->
+
+    <div id="master-container">
+        <?php
+        if(!$this->isHome) {
+        ?>
+            <div id="subpage-nav-wrapper">
+                <div id="subpage-nav-icon-holder"></div>
+            	<div id="subpage-nav">
+            		<?php
+            		if($this->page['hasSubPages'] && $this->page['pageUrl'] !== 'home') {
+        				if(isset($this->page['parentPage']) && $this->page['parentPage'] instanceof Pages_Model_Row_Page) {
+        					if($this->page['parentPage']->pageUrl !== 'home') {
+        						echo '<a href="/'.$this->page['parentPage']->pageUrl.'">'.$this->page['parentPage']->pageName.'</a>';
+        			            //echo $this->ajaxLink(ucwords($this->page['parentPage']->pageName), '/' . $this->page['parentPage']->pageName, array('noscript' => true, 'method' => 'post', 'update' => '#page-body'));
+        					}
+        				}
+        				if(!IS_MOBILE)
+            			echo $this->navigation()->menu()->renderMenu($this->subPageNav);
+            		} ?>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        <?php
+        }
+        ?>
+        <?php
+    	    echo $this->layout()->content;
+    	?>
+	</div><!-- close master-container -->
+
+	<div id="footer">
+	<?php if(!IS_MOBILE) {?>
+	    <div id="footer-icons">
+	        <ul>
+	            <li class="linkone">
+	                <a href="<?php echo (isset($this->appSettings->footerLinkOne) && !empty($this->appSettings->footerLinkOne)) ? $this->appSettings->footerLinkOne : '/resources'; ?>"></a>
+	            </li>
+	            <li class="linktwo">
+	                <a href="<?php echo (isset($this->appSettings->footerLinkTwo) && !empty($this->appSettings->footerLinkTwo)) ? $this->appSettings->footerLinkTwo : '/resources'; ?>"></a>
+	            </li>
+	            <li class="linkthree">
+	                <a href="<?php echo (isset($this->appSettings->footerLinkThree) && !empty($this->appSettings->footerLinkThree)) ? $this->appSettings->footerLinkThree : '/resources'; ?>"></a>
+	            </li>
+	            <li class="linkfour">
+	                <a href="<?php echo (isset($this->appSettings->footerLinkFour) && !empty($this->appSettings->footerLinkFour)) ? $this->appSettings->footerLinkFour : '/resources'; ?>"></a>
+	            </li>
+	        </ul>
+	    </div>
+	 <?php } ?>
+	    
+	    
+    	<?php if($this->appSettings->enableFbPageLink)
+    	{
+    		//echo 'We should show facebook here';
+    	}
+    	?>
+		<div id="copyright">
+		<?php
+		if(isset($this->appSettings->footerText) && !empty($this->appSettings->footerText)) {
+		?>
+		<span><?php echo $this->appSettings->footerText; ?></span><br />
+  <?php } ?>
+			<a>&copy;&nbsp;
+				<?php
+				$startYear = 2011; $thisYear = date('Y');
+				if ($startYear == $thisYear) :
+					echo $startYear;
+				else :
+					echo "{$startYear}-{$thisYear}";
+				endif;
+				?>
+				<?php echo $this->appSettings->siteName; ?>&nbsp;|&nbsp;
+			</a>
+			<span>Site by <a href="http://dirextion.com">Dire<span class="dxX">X</span>tion</a></span>
+		</div><!-- close copyright -->
+
+		<?php
+		if($this->appSettings->enableFooterLoginLink) { ?>
+		<div id="footer-login">
+		    <?php if($this->isLogged) { ?>
+                  <a href="/admin/index">ADMIN AREA</a> /
+                  <a href="/user/login/logout">LOGOUT</a>
+		    <?php }
+		          else { ?>
+		              <a href="/user/login"><?php echo $this->appSettings->footerLoginLinkText; ?></a>
+		    <?php } ?>
+
+        </div>
+        <?php
+        }
+		?>
+      	<div style="clear:both;"></div>
+	</div><!-- close footer -->
+
+  </div><!-- close wrapper -->
+</body>
+</html>

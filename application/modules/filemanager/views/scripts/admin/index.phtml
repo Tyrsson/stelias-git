@@ -1,0 +1,31 @@
+<?php 
+//echo $this->render('admin/index.ajax.phtml');
+?>
+<script type="text/javascript">
+require(
+[
+"dojo/ready",
+"dojo/on",
+"dijit/registry",
+"dojo/parser",
+"dijit/Dialog",
+"dijit/form/Button",
+"/js-src/ckfinder/ckfinder.js"
+],
+function(ready, on, registry, Dialog, Button) {
+
+	ready(function(){
+
+		var finder = new CKFinder();
+		finder.replace("fileManager");
+// 		on(registry.byId("openFinder"), "click", function(evt) {
+// 			console.log("load finder");
+// 			console.log(finder);
+			
+// 			//popup.set("content", ck);
+// 		});
+	});
+	
+});
+</script>
+<div id="fileManager"></div>

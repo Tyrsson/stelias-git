@@ -1,0 +1,68 @@
+<ul id="all-items">
+<?php
+    foreach($this->types as $key => $value) {
+    	$heading = $key;
+    ?>
+    <?php
+    if($heading === 'plate') { // stuff for the plate types
+    ?>
+    	<?php
+    	if(is_array($value)) {
+    	?>
+
+    		<?php
+    		foreach($value as $plate) {
+			//Zend_Debug::dump($item);
+    		?>
+				<li class="item">
+					<div class="item-details">
+					    <p><?php echo $plate["itemName"]; ?></p>
+					    <p><?php echo $plate["itemDesc"]; ?></p>
+					    <p>Price&nbsp;<?php echo $plate["price"]; ?></p>
+					</div>
+				</li>
+    		<?php
+    		}
+    		?>
+    	<?php
+    	}
+    	?>
+    <?php
+    }
+    else {
+    ?>
+    	<li class="item-list">
+    	<h3 class="heading-text"><?php echo ucwords($heading); ?></h3>
+    	<?php
+    	if(is_array($value)) {
+    	?>
+    	<ul class="<?php echo $heading; ?>">
+   			<?php
+
+   			foreach($value as $item) {
+			//Zend_Debug::dump($items);
+   			?>
+   				<li class="item">
+					<div class="item-details">
+					    <p><?php echo $item["itemName"]; ?></p>
+					    <p><?php echo $item["itemDesc"]; ?></p>
+					    <p>Price&nbsp;<?php echo $item["price"]; ?></p>
+					</div>
+				</li>
+   			<?php
+   			}
+   			?>
+   		</ul>
+   		<?php
+   		}
+   		?>
+
+   		</li>
+    <?php
+    }
+    ?>
+
+<?php
+    }
+    ?>
+</ul>

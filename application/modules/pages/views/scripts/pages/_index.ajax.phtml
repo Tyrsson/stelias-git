@@ -1,0 +1,95 @@
+
+ajaxed
+<?php
+if(isset($this->page) && $this->page !== null) {
+?>
+
+
+				<?php
+		        if($this->appSettings->displayPageHeading) {
+		        ?>
+
+	                <?php //echo ucwords( $this->page['pageName'] ); ?>
+
+	            <?php
+	            }
+	            ?>
+	            
+
+
+	               <?php echo $this->page['pageName']; ?>
+	               
+	               <?php
+if(isset($this->allowEdit) && $this->allowEdit === true) {
+?>
+
+<!--     			<a href="/admin/pages/create" title="create"><span class="create">&nbsp;</span></a> -->
+    			<a href="/admin/pages/edit/<?php echo $this->page['pageUrl']; ?>" title="edit"><span class="edit">&nbsp;</span></a>
+			<?php
+			if( $this->page['pageUrl'] != 'home') {
+            ?>
+    		<a href="/admin/pages/delete/<?php echo $this->page['pageUrl']; ?>" title="delete"><span class="delete">&nbsp;</span></a>
+  		<?php
+			} ?>
+<!-- 		    </div> -->
+<!-- 		</div> -->
+		<span id="system-message">
+		<?php
+		if(isset($this->messages)) {
+	    echo implode($this->messages);
+		}
+		?>
+		</span>
+<!-- 	</div> -->
+<!-- </div> -->
+<?php
+}
+?>
+	               
+	               
+	               
+	                <?php 
+	                //Zend_Debug::dump($this->subPage['pageType']);
+	                
+	                echo $this->page['pageText']; 
+	                
+	                if(isset($this->widget)) {
+	                   echo $this->{$this->widget};
+	                }
+	                
+	                ?>
+
+                    <?php 
+	                $i = 0;
+	                if(count($this->subPages)) {
+                        foreach ($this->subPages as $sub) {
+                            
+                    ?>
+                       
+                            <?php 
+                                echo $this->subPages[$i]['pageText']; 
+                            ?>
+                      
+                    <?php 
+                        $i++;
+                        }
+                    }
+                    
+                    ?>
+
+	<?php
+	if($this->showFb) {
+	//echo $this->faceBookHelper($this->fb, $fbTitle = $this->page['pageName'], $fbType = null, $fbUrl = null, $fbImage = null, $fbsiteName = null, $type = 'page');
+	}
+	?>
+	<?php
+
+?>
+
+
+
+<?php
+} else {
+// page would be null
+}
+?>

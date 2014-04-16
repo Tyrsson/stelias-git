@@ -1,0 +1,12 @@
+<?php 
+if(Zend_Auth::getInstance()->hasIdentity())
+{
+	$userInfo = Zend_Auth::getInstance()->getIdentity();
+}
+?>
+<div id="user_index_wrapper">
+	<ul class="navigation">
+		<li><a href="/user/admin/edit/<?php echo $userInfo->userId; ?>">Edit Personal Info</a></li>
+	</ul>
+	From this area you can access all your personal information, as well as update account information.
+</div>

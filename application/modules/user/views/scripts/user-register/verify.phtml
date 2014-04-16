@@ -1,0 +1,19 @@
+<div class="content">
+<?php 
+$this->headMeta()->appendHttpEquiv('Refresh','2;URL=http://'.$_SERVER['SERVER_NAME']);
+if(isset($this->message) || isset($this->messages)):
+?>
+<span class="script_message">
+<?php
+if(is_array($this->messages))
+{
+    echo implode($this->messages);
+} else {
+    echo $this->message;
+}?>
+</span>
+<?php 
+endif 
+?>
+</div>
+

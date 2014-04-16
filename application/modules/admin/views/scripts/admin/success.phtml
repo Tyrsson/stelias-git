@@ -1,0 +1,5 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Refresh', '3;URL='.$this->scheme .'://'. $this->host. '/admin/index');
+if(isset($this->messages)) : ?>
+<span id="script-notice"><?php echo implode($this->messages); ?></span>  
+<?php endif; ?>

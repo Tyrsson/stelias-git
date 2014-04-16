@@ -1,0 +1,15 @@
+<?php
+//Zend_Debug::dump($this->data->paginator);
+if(isset($this->data->paginator)) {
+	if(count($this->data->paginator) > 0) {
+		foreach($this->data->paginator as $file) { ?>
+
+		<img src="<?php echo $this->data->albumPath . '/' . $file->fileName; ?>" />
+<span><?php echo isset($file->description) ? $file->description : '';?></span>
+  <?php }
+	} else {?>
+	<h4>This album has no uploads to show at this time.</h4>
+<?php
+	}
+}
+?>

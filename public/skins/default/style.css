@@ -1,0 +1,203 @@
+@charset "utf-8";
+
+@import url("icons.css");
+@import url("pages.css");
+@import url("media.css");
+@import url("widgets.css");
+
+html {
+	padding:0;
+	margin:0;
+}
+body {
+	padding:0;
+	background: transparent url(./images/body-bg.png) 0 0 repeat;
+}
+/* EVERY ELEMENT THAT IS TO SHARE THIS FONT SHOULD BE PLACED HERE !!!!! */
+h1, h2, h3, h4, #menu {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+#wrapper {
+	margin: 0 auto 0 auto;
+	min-width: 764px;
+    width: 60%;
+    height: auto;
+    /* min-height: 400px; */
+    font-family: 'Open Sans', sans-serif;
+    background: url(./images/master-container-bg.png) 0 0 repeat;
+    padding: 0 40px 0 40px;;
+    box-shadow: 0 5px 23px black;
+}
+#header {
+	width:100%;
+    height:100px;
+    /* overflow:hidden; */
+}
+
+#logo {
+    width: 30%;
+    height: 100px;
+    float:left;
+}
+#search-widget {
+    float:right;
+}
+#master-container {
+	padding-top: 5px;
+    max-width:100%;
+    /* overflow:hidden; */
+}
+hr.shadow-hr {
+	border-top: 1px solid #E6E6E6;
+	border-bottom: 1px solid white;
+	-webkit-box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
+	border-left: #E6E6E6;
+}
+
+b {
+	font-weight: bold;
+}
+
+p {
+	line-height: 25px !important;
+	font-size: 14px;
+}
+
+h1 {
+	font-weight: 700;
+	font-size: 32px;
+	color: #F7931E;
+}
+
+h2 {
+	font-weight: 700;
+	font-size: 32px;
+	color: #F7931E;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 1px white;
+}
+
+h3 {
+	font-weight: 700;
+	font-size: 22px;
+	color: #F7931E;
+	text-transform: uppercase;
+}
+
+h4 {
+	font-weight: 700;
+	font-size: 15px;
+	color: #000;
+	text-transform: uppercase;
+}
+
+.slideshow {
+	width: 1024px;
+}
+
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+/******************************************************** Menu Styles **********************************************/
+#menu {
+    height: 40px;
+    width:99%;
+    margin: 0 0 20px 0;
+}
+.navigation {
+	text-transform: uppercase;
+}
+.navigation li {
+	margin-right:5px;
+	font-weight: normal;
+	white-space: nowrap;
+	display: inline;
+}
+/* Top level Active tab */
+ul.navigation li.active a {
+	background-color:#F8A423;
+	border-top: 1px solid #f9ad25;
+	border-radius:2px;
+}
+/* Top level Active tab on hover */
+ul.navigation li.active a:hover {
+    background-color:#F7931E;
+}
+/* Top level tab */
+ul.navigation li a {
+    padding: .25em .75em;
+	white-space: nowrap;
+	font-weight: 700;
+	color: #222;
+	text-decoration: none;
+    line-height: 42px;
+	transition: .30s ease-in-out;
+    -webkit-transition: .30s ease-in-out;
+}
+/* Top level tab on hover */
+.navigation li a:hover {
+	background-color:#F8A423;
+    border-radius:2px;
+}
+/*************/
+/******************************************************** Page Styles **********************************************/
+
+#subpage-nav-links {
+	margin-top: 10px;
+}
+#subpage-nav-links a {
+	color: #F7931E;
+	text-shadow: 1px 1px 1px white;
+}
+#page-wrapper {
+	clear: both;
+	margin: 15px auto;
+}
+#page-content {
+	width: 100%;
+    height:auto; /* was changed to prevent page from being so long when no content is present */
+	/* min-height: 700px; */
+	margin: 0 auto;
+}
+#page-body {
+
+}
+#page-body h2 {
+	margin-bottom: 10px;
+}
+/***********/
+
+/******************************************************** Footer **********************************************/
+
+#footer {
+    padding: 10px;
+}
+
+#footer hr {
+    margin-top: 40px;
+}
+/**********/
+/************************************************* Copyright notice *****************************************/
+#copyright {
+    background: transparent;
+    text-align: center;
+    text-decoration: none;
+    font-size: .8em;
+    color: #CCC;
+    text-shadow: 1px 1px 1px white;
+}
+.dxX {
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+/**********/
+/******************************************************** Controls **********************************************/
+

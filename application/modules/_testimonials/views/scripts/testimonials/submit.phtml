@@ -1,0 +1,57 @@
+<div id="guestbook-submit-content">
+	<div id="guestbook-submit-form">
+	<h3 id="gb-heading">Submit a Testimonial</h3>
+<?php 
+if(isset($this->messages) || isset($this->message)) {
+	
+	if(is_array($this->messages)) {
+		
+		echo '<span>', implode($this->messages) ,'</span>';
+		
+	} else {
+		echo $this->message;
+	}
+}
+
+if(isset($this->form)) {
+	if ($this->allowTestimonials == 'No') {
+		echo '<span id="logged-notice">Sorry, no submitting testimonials are allowed.</span>';
+	} else {
+		echo $this->form;
+	}
+} else {
+	echo '<span id="logged-notice">You must be logged in to submit testimonial.</span>';
+}
+?>
+	</div>
+</div>
+
+
+<?php $this->headStyle()->captureStart(); ?>
+#gb-heading {
+margin-bottom:20px;
+}
+#guestbook-submit-content {
+	width: 440px;
+	margin: 80px auto;
+	border: 3px solid #003861;
+	padding: 30px;
+}
+#guestbook-submit-form {
+height: auto;
+width:100%;
+}
+
+textarea#editor {
+margin: 0px;
+width: 99%;
+height: 140px;
+}
+
+input[type="text"] {width: 99%;}
+
+dt {float: left; margin-top: 6px !important;}
+
+.recaptchatable {clear: both;}
+
+<?php $this->headStyle()->captureEnd(); ?>

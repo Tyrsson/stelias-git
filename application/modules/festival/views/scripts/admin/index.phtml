@@ -1,0 +1,26 @@
+<?php
+$this->tabLabel = 'Manage Menus';
+?>
+<table>
+    <caption>Manage Menus</caption>
+    <tr>
+        <td><a class="button" href="/admin/festival/createmenu">Create New Menu</a></td>
+    </tr>
+<?php
+if(isset($this->menuList)) {
+
+    foreach($this->menuList as $menu) { ?>
+
+        <tr>
+            <td><?php echo $menu->name; ?></td>
+            <td><a class="button" href="/admin/festival/manageitems/<?php echo $menu->menuId;?>">Add / Edit Items</a></td>
+            <td><a class="button" href="/admin/festival/edit-menu/<?php echo $menu->menuId;?>">Edit</a></td>
+            <td><a class="button" href="/admin/festival/delete-menu/<?php echo $menu->menuId;?>">Delete</a></td>
+        </tr>
+
+<?php
+
+    }
+}
+?>
+</table>

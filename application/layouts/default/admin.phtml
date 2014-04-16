@@ -1,0 +1,102 @@
+<?php
+/* Start html output
+ * Set a valid doctype
+ */
+//Print doctype to browser
+echo $this->doctype();
+?>
+<html <?php echo $this->xmlnsHelper();?>>
+<head>
+        <?php
+        //Set formatted output indent TODO: Needs tweaked
+        $this->headMeta()->setIndent('    ') . "\n";
+        $this->seoHelper($this->keyWords);
+        //Print to browser
+        echo $this->headMeta();
+        //Set title seperator
+        $this->headTitle()->setSeparator(' - ');
+
+        /* Please note this will be prepended too through out the script
+         * @uses Dxcore_Controller_Plugin_Pagetitle
+         */
+        //Set the default page title
+        echo $this->siteName();
+        ?>
+
+        <base href="<?php /* This allows the server protocol to determine the base*/ echo $this->scheme .'://'. $this->host; ?>/" />
+        <?php
+        $this->headLink()->prependStylesheet($this->scheme.'://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', 'screen');
+        if($this->jQuery()->isEnabled()) {
+			$this->headLink()->prependStylesheet('/skins/default/jq-aurora/jquery-ui-1.8.23.custom.css', 'screen');
+		}
+		//Any remaining styles?
+        $this->siteStyles();
+        echo $this->headStyle();
+        echo $this->headLink();
+
+        if($this->slideShow) {
+			$this->dojo()->enable()
+			->setDjConfigOption('parseOnLoad', true)
+			->requireModule('dojox.image.Lightbox');
+			Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
+		}
+
+        //If and only if Dojo is enabled and called (do we need it? if yes) print it to the browser
+        $body = 'body';
+        if ($this->dojo()->isEnabled()):
+            $body = 'body class="nihilo"';
+        	echo $this->dojo();
+            
+        endif;
+
+        if($this->jQuery()->isEnabled() || $this->jQuery()->uiIsEnabled()) :
+            if($this->scheme === 'https') {
+                $this->jQuery()->setCdnSsl(true);
+            }
+			echo $this->jQuery();
+		endif;
+
+        echo $this->headScript();
+
+        ?>
+</head>
+<<?php echo $body;?>>
+<div id="wrap">
+	<div id="main" class="clearfix">
+		<div id="content">
+		<div id="header">
+			<div id="header_info">
+					<div id="info_left">
+						<p class="name"><?php echo $this->user->firstName . ' ' . $this->user->lastName ?></p>
+						<p class="email"><?php echo $this->user->email ?></p>
+						<a href="/">Return Home</a><br />
+						<a href="/user/login/logout">Logout</a>
+
+					</div>
+					<div id="info_right">
+<!-- 						<img src="/css/admin/images/users/admin.jpg" width="70" title="Dirextion Admin"> -->
+					</div>
+				</div>
+		</div>
+		<div id="breadcrumbs">
+            Content Management <span class="arrow"><span class="hidden">&gt;</span></span> <a href="/admin">Dashboard</a><span class="arrow"><span class="hidden">&gt;</span></span>
+            <?php echo $this->navigation()->breadcrumbs()->setMinDepth(0)->setLinkLast(true)->setSeparator('<span class="arrow"><span class="hidden">&gt;</span></span>'); ?>
+        </div>
+          <div id="dashlink"><a href="/admin/index">Dashboard</a></div>
+            <div id="admin-menu">
+              <?php
+              echo $this->navigation(Zend_Registry::get('Admin_Navigation'));
+              ?>
+            </div>
+          <div id="right-column">
+        	<?php echo $this->layout()->content; ?>
+        	</div>
+        </div>
+	</div>
+</div>
+<div id="footer">
+	<div id="footercontent">Aurora CMS &copy; <a href="http://clients.dirextion.com">DireXtion</a> . <span class="pushapart">|</span> All Rights Reserved</div>
+</div>
+</body>
+
+</html>

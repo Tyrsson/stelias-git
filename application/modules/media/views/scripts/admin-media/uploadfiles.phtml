@@ -1,0 +1,6 @@
+<?php
+$this->module = 'Media';
+$form = new Media_Form_UploadFiles();
+echo $form;
+echo $this->setupEditor('finder', $options = null, $withFinder = true, ucfirst($this->module));
+//echo $this->setupFinder(ucfirst($this->module));

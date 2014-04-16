@@ -1,0 +1,157 @@
+<?php
+/**
+ * This page validate at w3c If you modifiy this file IT MUST BE VALIDATED before you close this file!!!
+ *
+ */
+
+// The below using jquery to set the current page as active, do not remove !!
+$this->jQuery()->addJavascript('jQuery(function(){
+                                            jQuery("#menu-' . $this->data->pageUrl . '").parent().addClass("active");
+                                       });');
+?>
+<div id="media-gallery">
+ 	<?php
+    if(!empty($this->data->breadCrumbs)) {
+        echo $this->data->breadCrumbs;
+    }
+
+        if(isset($this->data->subAlbumPaginator)) {
+            if(count($this->data->subAlbumPaginator) >= 1) { ?>
+                <div id="subAlbumContainerBody" class="gallery mediaGrad">
+                    <div id="media-gallery-header"></div>
+                    <h3 class="media-sub-title">Subfolders</h3>
+        <?php
+                $pageCount = count($this->data->subAlbumPaginator);
+                $subAlbumsInPage = count($this->data->subAlbumPaginator->getItemsByPage($this->data->subAlbumPage));
+        ?>
+        <div id="subAlbum-container" class="gallery">
+          <?php foreach($this->data->subAlbumPaginator as $sa) { ?>
+                <div class="subAlbum-link-container">
+                   <a class="subAlbum-link" href="/<?php echo $this->data->pageName; ?>?albumName=<?php echo $sa->albumName; ?>&amp;action=album&amp;page=<?php echo $this->data->page; ?>#media-gallery"><img class="album-icon" src="/modules/media/images/albumicon-default.png" alt="icon" height="115" width="130" /></a>
+                    <div class="subAlbum-name">
+                        <?php echo $sa->albumName; ?>
+                    </div>
+                </div>
+          <?php } ?>
+       </div>
+
+      <?php if($pageCount > 1) {
+                echo $this->paginationControl($this->data->subAlbumPaginator, 'Elastic', 'subalbum_pagination_control.phtml',  array('page' => $this->data->page, 'pageName' => $this->data->pageName, 'albumName' => $this->data->albumName, 'action' => $this->data->action, 'subAlbumPage' => $this->data->subAlbumPage));
+            } ?>
+                </div>  <!-- close subAlbumContainerBody here -->
+      <?php } ?>
+
+  <?php } ?>
+
+  <div id="images-container" class="gallery mediaGrad">
+    <div id="images-header" class="gallery">
+    </div>
+    <h3 class="media-sub-title">Images</h3>
+        <div id="images">
+            <div id="thumbs">
+                <?php
+                $i = 0;
+                if(isset($this->data->paginator)) {
+                	if(count($this->data->paginator)) {
+                    /** IMPORTANT do not remove
+                     *  This is used to override the style to set the
+                     *  min-height for the style below
+                     */
+                    $pageCount = count($this->data->paginator);
+                    $thumbsPerPage = count($this->data->paginator->getItemsByPage($this->data->page));
+                    ?>
+                	<div id="thumbnails">
+                		<?php foreach($this->data->paginator as $file) { ?>
+                		<?php
+
+                		  if($i === 0) {
+                        	  $image = $file->fileName;
+                        	  $defaultAlt = !empty($file->alt) ? $file->alt : 'Not Found';
+                        	  $defaultTitle = !empty($file->title) ? $file->title : $file->fileName;
+                        	  $defaultDesc = !empty($file->description) ? $file->description : '';
+                        	  $time = ($file->timestamp != '0') ? new Zend_Date($file->timestamp, Zend_Date::TIMESTAMP) : 'Never Updated';
+                		  }
+
+                		  $alt = !empty($file->alt) ? $file->alt : 'Not Found';
+                		  $title = !empty($file->title) ? $file->title : $file->fileName;
+                		  $description = !empty($file->description) ? $file->description : '';
+                		  $thumb = '<img  width="75px" src="' . $this->data->thumbPath . '/' . $file->fileName.'" alt="' . $alt . '" title="' . $title . '" />';
+                		  $time = new Zend_Date($file->timestamp, Zend_Date::TIMESTAMP);
+                		  ?>
+                		  <?php echo $this->ajaxLink("$thumb", '/media/ajax/getimage?format=html#media-gallery', array('update' => '#ajaxed-image', 'class' => 'thumbnail-links'), array('fileName' => $file->fileName, 'albumPath' => $this->data->albumPath, 'alt' => $alt, 'title' => $title, 'desc' => $description, 'subAlbumPage' => $this->data->subAlbumPage, 'page' => $this->data->page, 'timestamp' => "$time"));?>
+
+                        <?php
+                            $i++;
+                            } ?>
+                      </div>
+                	    <?php
+                	    // css class = gallery-thumbs-pagination-control
+                	    if($pageCount > 1) {
+                	        echo $this->paginationControl($this->data->paginator,'Elastic','thumbnail_pagination_control.phtml', array('page' => $this->data->page, 'pageName' => $this->data->pageName, 'albumName' => $this->data->albumName, 'action' => $this->data->action, 'subAlbumPage' => $this->data->subAlbumPage));
+                	    }
+                	    ?>
+
+                    <?php
+                	}
+                	else {
+                	    $image = '';
+                	    $defaultAlt = '';
+                	    $defaultTitle = '';
+                	    //$defaultDesc = '';
+                	    $defaultTime = '';
+                	    $time = '';
+                	}
+                }
+                if(isset($this->data->showFirst)) {
+                    //Zend_Debug::dump($this->data->showFirst);
+                    $image = $this->data->showFirst->fileName;
+                    $defaultAlt = !empty($this->data->showFirst->alt) ? $this->data->showFirst->alt : 'Not Found';
+                    $defaultTitle = !empty($this->data->showFirst->title) ? $this->data->showFirst->title : $this->data->showFirst->fileName;
+                    $defaultDesc = !empty($this->data->showFirst->description) ? $this->data->showFirst->description : '';
+                    $time = new Zend_Date($this->data->showFirst->timestamp, Zend_Date::TIMESTAMP);
+                }
+                ?>
+            </div><!-- close thumbs -->
+            <div style="clear:both;"></div>
+            <div id="ajaxed-image">
+
+                <div id="ajaxed-container">
+                 <div id="main-image-header"></div>
+                   <div id="main-image-info">
+                       <?php 
+                       if(isset($this->appSettings->showFileTitleInGallery)) {
+                       ?>
+                       <h5 class="gallery-image-title">&nbsp;<?php echo $defaultTitle; ?></h5>
+                       <?php 
+                       }
+                       ?>
+                       <?php 
+                       if(isset($this->appSettings->showFileDescription)) {
+                       ?>
+                       <p id="gallery-image-desc"><?php echo $defaultDesc; ?></p>
+                       <?php 
+                       }
+                       ?>
+                       <?php 
+                       if(isset($this->appSettings->showFileUploadTime)) {
+                       ?>
+                       <h5 class="gallery-image-title">&nbsp;<?php echo $time; ?></h5>
+                       <?php 
+                       }
+                       ?>
+                   </div>
+                   <img id="main-gallery-image" src="<?php echo $this->data->albumPath;?>/<?php echo $image; ?>" alt="<?php echo $defaultAlt;?>" title="<?php echo $defaultTitle; ?>" />
+                </div>
+            </div>
+
+         </div><!-- closes images container -->
+        </div><!-- close images -->
+</div><!-- close media-gallery -->
+<?php $this->headStyle()->captureStart(); ?>
+#thumbnails {
+    min-height:<?php echo $thumbsPerPage / 3 * 90; ?>px;
+}
+#subAlbum-container {
+    width:<?php echo $subAlbumsInPage / 1 * 170; ?>px;
+}
+<?php $this->headStyle()->captureEnd(); ?>

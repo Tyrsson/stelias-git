@@ -1,0 +1,143 @@
+<?php
+/* Start html output
+ * Set a valid doctype
+ */
+//Print doctype to browser
+echo $this->doctype();
+?>
+<html <?php echo $this->xmlnsHelper();?>>
+<head>
+        <?php
+        //Set formatted output indent TODO: Needs tweaked
+        $this->headMeta()->setIndent('    ') . "\n";
+        $this->seoHelper($this->keyWords);
+        //Print to browser
+        echo $this->headMeta();
+        //Set title seperator
+        $this->headTitle()->setSeparator(' - ');
+
+        /* Please note this will be prepended too through out the script
+         * @uses Dxcore_Controller_Plugin_Pagetitle
+         */
+        //Set the default page title
+        echo $this->siteName();
+        ?>
+
+        <base href="<?php /* This allows the server protocol to determine the base*/ echo $this->scheme .'://'. $this->host; ?>/" />
+        <?php
+        $this->headLink()->prependStylesheet($this->scheme.'://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', 'screen');
+        $this->headLink()->appendStylesheet('/js-src/jquery-ui/css/smoothness/jquery-ui-1.10.2.custom.css', 'screen');
+        
+        $this->jQuery()->addJavascriptFile('/js-src/ckeditor/ckeditor.js');
+        $this->jQuery()->addJavascriptFile('/js-src/ckeditor/adapters/jquery.js');
+//         $this->jQuery()->addJavascriptFile('/js-src/jquery-ui/plugins/timepicker.js');
+//         $this->jQuery()->addJavascriptFile('/js-src/jquery-calc.js');
+//         $this->jQuery()->addJavascriptFile('/js-src/jquery-form.js');
+//         $this->jQuery()->addJavascriptFile('/js-src/aurora.js');
+		//Any remaining styles?
+        //$this->siteStyles();
+        
+        $this->headStyle('html,
+                          body {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                                padding: 0;
+                             /* overflow: hidden; */
+                          }');
+        
+
+
+		// this has to be here since we do not want it to effect the main frontend navigation
+//         $this->jQuery()->addJavascript('$(function(){
+//                                             $("ul.navigation").menu();
+//                                        });');
+
+
+        if($this->jQuery()->isEnabled() || $this->jQuery()->uiIsEnabled()) :
+            if($this->scheme === 'https') {
+                $this->jQuery()->setCdnSsl(true);
+            }
+
+			echo $this->jQuery();
+
+		endif;
+
+        echo $this->headScript();
+        
+        ?>
+<!--         <script type="text/javascript" src="/js-src/ckeditor/ckeditor.js"></script> -->
+<!--         <script type="text/javascript" src="/js-src/ckeditor/adapters/jquery.js"></script> -->
+<link rel="stylesheet" href="/lib/dijit/themes/stelias/stelias.css">
+
+<?php 
+echo $this->headStyle();
+echo $this->headLink();
+?>
+
+<script 
+data-dojo-config="
+async:1, 
+parseOnLoad: true,
+dojoBlankHtmlUrl: '/lib/dojo/resources/blank.html',
+ioPublish: true,
+packages: [ 
+          {
+            name: 'aurora',
+            location: '/lib/aurora'
+          }
+        ]"
+src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js">
+</script>
+<script type="text/javascript">
+    require(["aurora/admin/app", "dojo/domReady!", "/js-src/ckeditor/ckeditor.js", "/js-src/ckeditor/adapters/jquery.js"], function(adminApp){
+        adminApp.init();
+        $( "#pageText" ).ckeditor();
+        var menu = $("ul.navigation");
+        menu.css("width", "200px");
+        menu.menu();
+    });
+</script>
+
+<script>
+$(function(){
+    $( "#ui-tabs" ).tabs({});
+});
+</script>
+</head>
+<body class="claro">
+    <!-- application -->
+    <div id="appLayout" class="demoLayout" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'headline'" style="z-index: 0; width:100%; height:99%;">
+        <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'" style="height: 100px;">
+            <div id="adminHeader" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'sidebar'" style="width:100%; height:100%;">
+                <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center'" style="width:60%;">
+                    <span><?php echo (!empty($this->appSettings->siteName)) ? $this->appSettings->siteName : ''; ?>&nbsp;Admin Area</span>
+                </div>
+                <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'trailing'" style="width:40%;">
+                    <a class="linkButton" href="/">Home</a>
+                    <a class="linkButton" href="/user/login/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'left'" style="width:400px;">
+            <div data-dojo-type="dijit/layout/ContentPane" title="Guide">
+              <?php
+              echo $this->navigation(Zend_Registry::get('Admin_Navigation'));
+              ?>   
+            </div>
+        </div>
+        <div class="centerPanel" id="tabs" data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region: 'center', tabPosition: 'top'">
+            <div data-dojo-type="dijit/layout/ContentPane" title="Manage <?php echo ucfirst($this->module);?>" style="width: 60%;">
+                <?php
+                echo $this->layout()->content;
+              	?>
+            </div>
+        </div>
+        <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'bottom'">
+            <div class="box">
+    	       <p>Aurora CMS &copy; <a href="http://clients.dirextion.com">DireXtion</a> . <span class="pushapart">|</span> All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

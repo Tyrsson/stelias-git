@@ -1,0 +1,16 @@
+<div id="page-text">
+<?php
+//Zend_Debug::dump($this->entry);
+if(isset($this->entry) && $this->entry->isApproved === '1') { ?>
+<!-- 'id', 'guestName', 'content', 'rating', 'isApproved', 'createdDate', 'updatedDate' -->
+<div id="tst-display">
+<h6><?php echo $this->entry->guestName; ?></h6>
+
+<p><?php echo $this->entry->content; ?></p>
+</div>
+<?php } else { ?>
+<span>No record was found for the requested Entry</span>
+<?php 
+}
+?>
+</div>

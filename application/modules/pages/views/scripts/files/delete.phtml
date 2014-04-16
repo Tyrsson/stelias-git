@@ -1,0 +1,10 @@
+<h2>Album List</h2>
+<?php
+if(isset($this->messages) && is_array($this->messages)) {
+    echo implode($this->messages);
+} 
+elseif(isset($this->messages) && !is_array($this->messages)) {
+    echo $this->messages;
+}
+
+?>

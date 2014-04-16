@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <admin-calendar>
+	    <admin-cal>
+	        <label>Admin Calendar</label>
+	        <uri>/admin/calendar/index</uri>
+	        <resource>dxadmin-tools</resource>
+	        <privilege>dxadmin.manage.all</privilege>
+	        <!-- <class>menuitem</class> -->
+	        <pages>
+	            <cal-settings>
+	                <label>Calendar Settings</label>
+	                <uri>/admin/calendar/settings</uri>
+	            </cal-settings>
+	            <cal-create>
+	                <label>Manage Calendar</label>
+	                <uri>/admin/calendar/manage-calendar</uri>
+	            </cal-create>
+	        </pages>
+	    </admin-cal>
+    </admin-calendar>
+</config>

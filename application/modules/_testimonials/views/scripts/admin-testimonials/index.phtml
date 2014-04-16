@@ -1,0 +1,47 @@
+<div class="full">
+	<h2>Browse Testimonials</h2>
+	<div class="content">
+    <form class="checklist-li">
+	<ul class="list">
+    	
+    	<?php if (count($this->paginator)): 
+    			$i=0;
+				foreach($this->paginator as $testimonial): 
+			 
+                        
+				$class = "";
+				$class.= ($i%2==0) ? 'alt ' : '';
+				$class = !empty($class) ? ' class="' . $class . '" ' : '';
+       
+       //$featured = '';
+       //$product->featured === '0' ? $featured = 'No' : $featured = 'Yes';
+       
+       ?>
+       <li>
+            <a href="/admin/testimonials/edit/<?php echo $testimonial->id; ?>" class="edit" title="edit" rel="popup">edit</a>
+            <?php
+            //Zend_Debug::dump($gb->isApproved);
+            if($testimonial->isApproved === '0') :?>
+            <a href="/admin/testimonials/approve/<?php echo $this->pageNumber; ?>/<?php echo $testimonial->id; ?>" class="approve" title="approve" rel="popup">approve</a>
+            <?php endif;?>
+            <a href="/admin/testimonials/delete/<?php echo $this->pageNumber; ?>/<?php echo $testimonial->id; ?>" class="delete" title="delete" rel="popup">&nbsp;</a>
+            <p>User Name:&nbsp;<?php echo $testimonial->guestName;?></p>
+            <p>Content:&nbsp;<?php echo $testimonial->content;?></p>
+
+       </li>
+       <?php
+		$i++; endforeach;endif;
+        ?>
+        
+        <?php if((count($this->paginator)) <= 0){
+            echo '<li class="alt warning">No testimonials to display</li>';
+         } ?>
+    
+    </ul>
+    </form>
+    <?php echo $this->paginationControl($this->paginator,'Sliding','pagination_control_admin.phtml'); ?>
+    
+    <a href="/testimonials/submit" class="publish" tabindex="1"><strong>Add New Testimonial</strong></a>
+		
+	</div>
+</div>

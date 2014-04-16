@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+        <admin-search>
+            <manage-search>
+                <label>Search</label>
+                <uri>/admin/search/index</uri>
+                <!-- <resource>admin:area</resource>
+                <privilege>manage-all</privilege> -->
+                <order>444</order>
+            </manage-search>
+        </admin-search>
+</config>

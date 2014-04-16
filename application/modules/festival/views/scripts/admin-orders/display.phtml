@@ -1,0 +1,119 @@
+<?php
+//$cur = $this->currency()
+$this->headScript()->appendFile('/js-src/jq-print.js', 'text/javascript', null);
+
+$this->jQuery()->addJavascript('
+$(function() {
+	$(".print").click(function() {
+		$("div.PrintArea").printArea();
+		return false;
+	});
+});');
+?>
+<a href="#" class="print button" rel="content">Print</a>
+<?php
+if(isset($this->order['orderId'])) {
+
+?>
+<?php echo $this->ajaxLink("Mark Completed", '/admin/festival/orders/display/'.$this->order['orderId'].'?format=html', array('update' => '#order-status', 'class' => 'button'), array('orderId' => $this->order['orderId'], 'status' => 1))?>
+<?php
+}
+?>
+<div class="PrintArea">
+
+<ul class="printable">
+<?php
+if(isset($this->order) && !empty($this->order)) {
+    //Zend_Debug::dump($this->order, 'view layer');
+
+    foreach($this->order as $key => $value) {
+
+?>
+    <?php
+    if($key !== 'order') {
+    ?>
+    	<?php
+    	if($key == 'completed') {
+    	?>
+    	<li id="order-status"><?php
+    	$stat = (bool)$value;
+    	echo 'Order Status:&nbsp;'?><?php echo $stat ?  'Complete' : 'Pending'; ?></li>
+    	<?php
+    	}
+    	else {
+    	?>
+
+        <li><?php echo ucfirst($key).':&nbsp;'?><?php echo !empty($value) ? "$value" : ''; ?></li>
+
+        <?php
+        }
+        ?>
+    <?php
+    }
+    //continue;
+    ?>
+    <?php
+    if($key === 'order') {
+    //Zend_Debug::dump($value);
+    ?>
+   <li>
+   	<h6>Order Items</h6>
+        <?php
+        $total = 0.00;
+        foreach($value as $item) {
+        ?>
+        <ul class="item">
+            <?php
+            foreach($item as $k => $v) {
+            ?>
+            	<?php
+            	if($k !== 'itemId') {
+            	?>
+            		<?php
+            		if($k === 'itemName') {
+            		?>
+            			<li><?php echo 'Item Name:&nbsp;'?><?php echo !empty($v) ? $v : ''; ?></li>
+            		<?php
+            		}
+            		?>
+
+            		<?php
+            		if($k === 'item_total') {
+					$total += $v;
+            		?>
+                		<li><?php echo str_replace('_', " ", ucfirst($k)).':&nbsp;'?><?php echo !empty($v) ? $this->currency($v) : ''; ?></li>
+                	<?php
+                	} else {
+                	?>
+                		<li><?php echo ucfirst($k).':&nbsp;'?><?php echo !empty($v) ? "$v" : ''; ?></li>
+                	<?php
+                	}
+                	?>
+                <?php
+                }
+                ?>
+            <?php
+            continue;
+            }
+
+            ?>
+        </ul>
+       <?php
+        }
+
+        ?>
+
+   </li>
+    <?php
+    }
+    ?>
+
+<?php
+    }
+    ?>
+    <li>Order Total: <?php echo $this->currency($total); ?></li>
+<?php
+}
+?>
+</ul>
+</div>

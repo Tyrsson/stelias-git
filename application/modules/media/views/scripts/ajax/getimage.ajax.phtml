@@ -1,0 +1,26 @@
+<div id="ajaxed-container">
+    <div id="main-image-info">
+        <?php 
+        if($this->appSettings->showFileTitleInGallery) {
+        ?>
+        <h5 class="gallery-image-title">Title:&nbsp;<?php echo $this->data->title; ?></h5>
+        <?php 
+        }
+        ?>
+        <?php 
+        if($this->appSettings->showFileDescription) {
+        ?>
+        <p id="gallery-image-desc"><?php echo $this->data->desc; ?></p>
+        <?php 
+        }
+        ?>
+        <?php 
+        if($this->appSettings->showFileUploadTime) {
+        ?>
+        <h5 class="gallery-image-title">&nbsp;<?php echo $this->data->timestamp; ?></h5>
+        <?php 
+        }
+        ?>
+    </div>
+    <img id="main-gallery-image" src="<?php echo $this->data->albumPath . '/' . $this->data->fileName; ?>" alt="<?php echo $this->data->alt; ?>" />
+</div>

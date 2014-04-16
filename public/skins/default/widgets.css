@@ -1,0 +1,89 @@
+@charset"utf-8";
+#widget-container {
+    width: 100%;
+    height:!important auto;
+    margin: 30px auto 1px;
+}
+.page-widget, recent-widget {
+	margin: 0 auto 0 auto;
+    height: auto;
+}
+.widget-table {
+	width: 70%;
+    margin: 0 auto 0 auto;
+    height: auto;
+    display:table;
+    table-layout:fixed;
+}
+.widget-table ul {
+	height:auto;
+    display:table-row;
+}
+.widget-table ul li {
+	display:table-cell;
+max-width:75px;
+}
+/* target nested table, row and cells */
+.recent-image-container ul {
+	height:auto;
+}
+.widget-table ul li ul li a {
+	margin:0 auto;
+	display:block;
+}
+/******/
+.cell-content-container, .recent-image-container {
+    height:100%; 
+    display:block;
+    background-color: #E6E6E6;
+    border-bottom-left-radius: 1.5em;
+    box-shadow: 0 0 8px #999;
+    margin: 0.25em 0.5em;
+    padding-bottom:5px;
+}
+.recent-image-container {
+	height:auto; 
+    overflow:hidden;
+}
+.cell-content-container a {
+	margin: 0 auto .25em auto;
+	line-height:36px;
+    width: 106px;
+    height: 36px;
+    text-align: center; 
+    text-shadow: 1px 1px 1px #F5D0A6;
+    background: url(./images/button-sprite.png) 0 0 no-repeat;
+	text-decoration:none;
+    display:block;
+    color: #000;
+    font-size: 13px;
+}
+.recent-image-container a {
+    text-decoration:none;
+}
+.cell-heading-top-margin {
+	height: 10px;
+    width:100%;
+    background-color: #F7931E;
+}
+.cell-heading {
+	margin-top:3%;
+    height:20px;
+    display:block;
+    width:100%;
+    font-size: 1.25em;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 1px 1px 1px white;
+}
+.cell-text {
+	line-height: 1em;
+    font-size:1em;
+	display:block;
+	padding: 0.85em;
+    text-shadow: 1px 1px 1px white;
+	text-overflow:ellipsis;
+}
+/ *********** Search ************* /

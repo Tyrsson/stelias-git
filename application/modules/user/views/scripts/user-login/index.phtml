@@ -1,0 +1,22 @@
+<div id="login">
+<?php 
+if(isset($this->form)) {
+?>
+
+<?php //echo strtoupper($this->form->getName()); ?>
+
+<?php 
+if(isset($this->messages) || isset($this->message)) {
+	
+	if(is_array($this->messages)) {
+		
+		echo '<span>', implode($this->messages) ,'</span>';
+		
+	} else {
+		echo $this->message;
+	}
+}
+	echo $this->form; 
+}
+?>
+</div>

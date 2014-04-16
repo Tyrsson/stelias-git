@@ -1,0 +1,20 @@
+<config>
+	<admin-festival>
+	    <manage-festival>
+	        <label>Manage Festival</label>
+            <uri>/admin/festival</uri>
+            <resource>festival</resource>
+            <privilege>manage.orders</privilege>
+            <class>menuitem</class>
+            <pages>
+                <orders>
+                    <label>Manage Orders</label>
+                    <uri>/admin/festival/orders/list</uri>
+                    <resource>festival</resource>
+                    <privilege>manage.orders</privilege>
+                    <class>menuitem</class>
+                </orders>
+           </pages> 
+        </manage-festival>
+	</admin-festival>
+</config>

@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+.album-icon {
+	float: left;
+	margin: 20px 20px;
+}
+
+.album-icon a {
+	color: #F7931E;
+}
+

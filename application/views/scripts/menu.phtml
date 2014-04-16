@@ -1,0 +1,62 @@
+<ul class="main-navigation" id="main-navigation">
+	
+<?php
+
+$html = array();
+$total = 0;
+foreach ($this->container as $page)
+{
+	if($page->_visible != false){
+		$total++;
+	}
+}
+$x = 0;
+
+foreach ($this->container as $page) 
+{
+	if($page->_visible != false && $page->resource == 'user'){
+		if (!empty($page->pages)){
+			if($x == 0){
+				$html[] = '<li class="title top"><span></span>';
+			}elseif($x == ($total - 1)){
+				$html[] = '<li class="title bottom"><span></span>';
+			}else{
+				$html[] = '<li class="title"><span></span>';
+			}
+			
+    		$html[] = $this->menu()->htmlify($page) . PHP_EOL;
+    		if($x == ($total - 1)){
+    			$html[] = '</li><ul class="menu bottom">';
+    		}else{
+    			$html[] = '</li><ul class="menu">';
+    		}
+    		foreach ($page->pages as $subpage)
+    		{
+    			$html[] = "<li>";
+    			if ($subpage->getHref()) $html[] = "<a href=\"{$subpage->getHref()}\">";
+    			else $html[] = "<span>";
+    			$html[] = $subpage->getLabel();
+    			if ($subpage->getHref()) $html[] = "</a>";
+    			else $html[] = "</span>";
+    			$html[] = "</li>";
+    		}
+    		$html[] = "</ul>";
+		}
+    	else{
+    		if($x == 0){
+    			$html[] = '<li class="top">';
+    		}elseif($x == ($total - 1)){
+    			$html[] = '<li class="bottom">';
+    		}else{
+    			$html[] = '<li>';
+    		}
+    		
+    		$html[] = $this->menu()->htmlify($page) . PHP_EOL;
+    	}
+    	$html[] = "</li>";
+    	$x++;
+    }
+    
+}
+
+echo join(PHP_EOL, $html);

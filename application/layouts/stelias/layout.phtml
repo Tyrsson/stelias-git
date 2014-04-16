@@ -1,0 +1,192 @@
+<?php
+/* Start html output
+ * Set a valid doctype
+*/
+//Print doctype to browser
+echo $this->doctype();
+//$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')->appendHttpEquiv('Content-Language', 'en-US');
+?>
+<html <?php echo $this->xmlnsHelper();?>>
+<head>
+
+        <?php
+        //Set formatted output indent TODO: Needs tweaked
+        $this->headMeta()->setIndent('    ') . "\n";
+        $this->seoHelper($this->keyWords);
+        if(IS_MOBILE) {
+            $this->headMeta()->setName('viewport', 'width=device-width, initial-scale=1,maximum-scale=1');
+        }
+        
+        //Print to browser
+        echo $this->headMeta();
+        //Set title seperator
+        $this->headTitle()->setSeparator(' - ');
+
+        /* Please note this will be prepended too through out the script
+         * @uses Dxcore_Controller_Plugin_Pagetitle
+         */
+        //Set the default page title
+        echo $this->siteName();
+        ?>
+        <base href="<?php /* This allows the server protocol to determine the base*/ echo $this->scheme .'://'. $this->host; ?>/" />
+        <?php
+        $this->headLink()->prependStylesheet($this->scheme.'://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', 'screen');
+        $this->headLink()->prependStylesheet($this->scheme.'://ajax.googleapis.com/ajax/libs/dojo/1.9.1/dijit/themes/claro/claro.css', 'screen');
+
+		//Any remaining styles?
+        $this->siteStyles();
+
+        $this->headStyle('html,
+                          body {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                                padding: 0;
+                                
+                          }');
+        
+        echo $this->headLink();
+        echo $this->headStyle();
+
+        if($this->jQuery()->isEnabled() || $this->jQuery()->uiIsEnabled()) :
+            if($this->scheme === 'https') {
+                $this->jQuery()->setCdnSsl(true);
+            }
+			echo $this->jQuery();
+
+		endif;
+        echo $this->headScript();
+        ?>
+<link rel="stylesheet" href="/lib/dijit/themes/stelias/stelias.css">
+<script 
+data-dojo-config="
+async:1, 
+parseOnLoad: true,
+dojoBlankHtmlUrl: '/lib/dojo/resources/blank.html',
+packages: [ {
+            name: 'aurora',
+            location: '/lib/aurora'
+        } ]"
+src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js">
+</script>
+<script type="text/javascript">
+require([
+         "aurora/frontend/app", 
+         "dojo/domReady!"
+        ], function(frontApp){
+        frontApp.init();
+});
+</script>
+</head>
+<body class="claro">
+            <div id="top" data-dojo-type="dijit/layout/LayoutContainer" data-dojo-props="design: 'sidebar'" style="height: 18%; min-height: 200px;">
+                <div id="header-leftPanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'left'" style="width:33.33%;">
+                    <?php
+                       if(!empty($this->appSettings->headerBlurbText))
+                       {
+                   	   echo '<div class="header-blurb-left"><span class=" txt-light txt-small">'.$this->appSettings->headerBlurbText.'</span></div>';
+                       }
+                       ?>
+                     </div>
+                     <div id="header-centerPanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center'" style="padding: 0;">
+                    
+                    <?php
+                        if(!IS_MOBILE) {
+                        echo $this->appSettings->enableLinkLogo ? '<a href="/"><img style="width: 100%; max-width: 415px; max-height: 200px;" src="/skins/'.$this->skinName.'/images/logo-small.png" alt="'.$this->appSettings->siteName.'" /></a>' : '<img src="/skins/'.$this->skinName.'/images/logo-small.png" alt="'.$this->appSettings->siteName.'" />';
+                        }
+                     ?>
+                     </div>
+                <div id="header-rightPanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'right'" style="width:33.33%;">
+                    <?php
+                        if(!empty($this->appSettings->headerBlurbTextTwo))
+                        {
+        	               echo '<div class="header-blurb-right"><span class=" txt-light txt-small">'.$this->appSettings->headerBlurbTextTwo.'</span></div>';
+                        }
+                    ?>
+                     </div>
+             </div>
+<!--             <div id="body-imagePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'"> -->
+            <div id="body-imagePanel" style="max-width: 973px; margin: 0 auto;">
+            <?php
+    	               //if(!IS_MOBILE)
+    		          echo $this->navigation()->menu();
+    	            ?>
+            
+                <img src="/skins/stelias/images/main-slider.png" style="width:100%; margin: 0 auto;" /> 
+                    <?php
+                    if($this->isHome) {
+
+                    if($this->appSettings->enableWelcomeText)
+                    {
+                    ?>
+                    
+                    <div class="welcome txt txt-dark">
+                    	<span class="welcome-intro txt txt-dark">Welcome!</span>
+        
+                    	<?php
+                    	if(!empty($this->appSettings->welcomeText))
+                    	{
+                    	?>
+                    	<span class="welcome-text"><?php echo $this->appSettings->welcomeText; ?></span>
+                    	<?php
+                    	}
+                    	?>
+        
+                    </div>
+                    <?php
+                    }
+                    ?>
+        
+                <?php
+                } else {
+                ?>
+
+                <?php
+                }
+                ?>
+           </div><!-- close body-imagePanel -->
+        <!--<div id="body-borderContainer" data-dojo-type="dijit/layout/LayoutContainer" data-dojo-props="design: 'headline'" style="height: 100%; max-width: 973px;">-->
+<!--            <div id="body-contentPanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center'"> -->
+             <div id="tabs" class="home-tabs" data-dojo-type="dijit/layout/TabContainer" doLayout="false">
+                <?php
+    	            echo $this->layout()->content;
+    	        ?>
+    	     </div>
+<!--     	   </div> -->
+    	   
+    	   <div id="bottom" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'bottom'">
+
+					    <?php
+		                if(isset($this->appSettings->footerText) && !empty($this->appSettings->footerText)) {
+		                ?>
+		                <span><?php echo $this->appSettings->footerText; ?></span>
+                  <?php } ?>
+			            <a>&copy;&nbsp;
+				        <?php
+				            $startYear = 2011; $thisYear = date('Y');
+				        if ($startYear == $thisYear) :
+					        echo $startYear;
+				        else :
+					        echo "{$startYear}-{$thisYear}";
+				        endif;
+				?>
+				<?php echo $this->appSettings->siteName; ?>&nbsp;|&nbsp;
+			    </a>
+			    <span>Site by <a href="http://dirextion.com">Dire<span class="dxX">X</span>tion</a></span>
+                <?php
+		        if($this->appSettings->enableFooterLoginLink) { ?>
+		    <?php if($this->isLogged) { ?>
+                  <a href="/admin/index">ADMIN AREA</a> /
+                  <a href="/user/login/logout">LOGOUT</a>
+		    <?php }
+		          else { ?>
+		              <a href="/user/login"><?php echo $this->appSettings->footerLoginLinkText; ?></a>
+		    <?php } ?>
+        <?php
+        }
+		?>
+
+        </div>  
+    <!--</div>-->
+</body>
+</html>

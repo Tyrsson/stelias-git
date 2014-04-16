@@ -1,0 +1,33 @@
+.controls, .home-controls {
+	width: 80px;
+    height:20px;
+	position:relative;
+    z-index:501;
+	left:90%;
+	top:5px;
+}
+.controls {
+	left:90%;
+}
+.home-controls {
+/*     position:relative;
+    z-index:501; */
+}
+.controls a, .home-controls a {
+	text-decoration: none;
+}
+.create, .edit, .delete {
+	width:10px;
+    height:20px;
+    padding-left:7px;
+    padding-right:7px;
+} 
+.create {
+	background: url(./icons/icon-create.png) 0 0 no-repeat;
+}
+.edit {
+	background: url(./icons/icon-edit.png) 0 0 no-repeat;
+}
+.delete {
+	background: url(./icons/icon-delete.png) 0 0 no-repeat;
+}

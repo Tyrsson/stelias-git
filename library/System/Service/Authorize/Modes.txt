@@ -1,0 +1,18 @@
+
+SIM mode
+SIM allows transactions charging directly the credit card.
+It can use a hosted form on authorize.net site (x_show_form = true).
+Alternatively, it can use a merchant-specific form.
+
+It doesn't allow several types of transations, such as void (refund), partial transactions.
+
+-------------
+AIM mode
+Minimum Requirements
+
+The merchant must have a U.S. based merchant bank account that allows Internet transactions.
+The merchant must have an e-commerce ( Card Not Present) Authorize.Net Payment Gateway account.
+The merchant must have a valid Secure Sockets Layer (SSL) certificate and their Web site must be capable of initiating both client and server-side SSL connections.
+The merchant must be able to store payment gateway account data securely (for example, API Login ID or Transaction Key).
+
+-------------

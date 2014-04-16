@@ -1,0 +1,37 @@
+<?php 
+$this->headScript()->offsetSetFile( 3, '/js/highslide/highslide-full.js');
+$this->headLink()->appendStylesheet('/js/highslide/highslide.css');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/js/highslide/highslide-ie6.css', 'screen', 'IE 7', null);
+$this->headScript()->captureStart();
+?>
+hs.graphicsDir = '/js/highslide/graphics/';
+hs.wrapperClassName = 'wide-border';
+<?php 
+$this->headScript()->captureEnd();
+?>
+<span class="gallery-heading"><?php echo $this->albumTitle; ?></span>
+
+<?php if(count($this->paginator)) : ?>
+<div id="gallery-wrapper">
+	<div id="gallery">
+	<?php foreach($this->paginator as $file) : ?>
+
+		<a href="<?php echo $this->basePath . '/' . $file->fileName; ?>" class="highslide" onclick="return hs.expand(this)">
+			<img src="/modules/media/albums/1/cherry.thumb.jpg" alt="Highslide JS"
+					title="Click to enlarge" height="120" width="107" />
+		</a>
+
+		<div class="highslide-caption">
+		<?php $caption = $this->tags->fetch($file->fileId);?>
+			<?php echo isset($caption) ? $caption : ''; ?>
+		</div>
+	
+<?php
+			endforeach;
+	  endif;
+?>
+	</div>
+</div>
+<?php $this->headStyle()->captureStart(); ?>
+
+<?php $this->headStyle()->captureEnd(); ?>

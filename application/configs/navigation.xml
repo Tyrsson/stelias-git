@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<nav>
+		<home>
+			<label>Home</label>
+			<uri>/</uri>
+			<!-- <visible>false</visible> -->
+		</home>
+		<tour>
+	    	<label>Virtual Tour</label>
+	    	<uri>/tour</uri>
+		</tour>
+	</nav>
+	<adminnav>
+		<adminhome>
+			<label>Admin</label>
+			<uri>/admin/index</uri>
+			<resource>admin:area</resource>
+			<privilege>view</privilege>
+			<visible>false</visible>
+			<order>999</order>
+		</adminhome>
+	</adminnav>
+</config>

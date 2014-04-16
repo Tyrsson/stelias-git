@@ -1,0 +1,41 @@
+<?php
+if ($this->pageCount):
+$this->jQuery()->addJavascript('jQuery(function(){
+                                             $( ".buttonset" ).buttonset();
+                                       });');
+?>
+<div class="paginationControl buttonset">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <a id="page<?php echo $this->previous; ?>" href="<?php echo $this->url() . '?type='.$this->type.'&amp;page='.$this->previous; ?>"><span>&laquo; Previous</span></a>
+<?php endif; ?>
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+  <a id="page<?php echo $page; ?>" href="<?php echo $this->url() . '?type='.$this->type.'&amp;page='.$page; ?>"><?php echo $page; ?></a>
+  <?php else: ?>
+
+<?php
+$this->jQuery()->addJavascript('
+jQuery(function(){
+			$("#page'.$this->current.'").addClass("ui-state-active");
+			$("#page'.$this->current.'").hover(function () {
+							$(this).addClass("ui-state-active");
+						  },
+						  function () {
+							$(this).addClass("ui-state-active");
+						  }
+			);
+});');
+?>
+    <a id="page<?php echo $this->current; ?>" href="<?php echo $this->url() . '?type='.$this->type.'&amp;page='.$this->current; ?>"><?php echo $this->current; ?></a>
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <a id="page<?php echo $this->next; ?>" href="<?php echo $this->url() . '?type='.$this->type.'&amp;page='.$this->next; ?>"><span>Next &raquo;</span></a>
+<?php endif; ?>
+</div>
+<?php endif; ?>

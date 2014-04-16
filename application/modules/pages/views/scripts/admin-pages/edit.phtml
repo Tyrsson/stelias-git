@@ -1,0 +1,70 @@
+<?php 
+// $this->jQuery()->enable();
+// $this->jQuery()->uiEnable();
+
+
+$this->jQuery()->addJavascript('jQuery(function() {
+								jQuery( "#sortable" ).sortable({
+														update: function(event, ui){
+																	var order = jQuery( "#sortable" ).sortable("toArray");
+																	for(var key in order) {
+																		var val = order[key];
+																		var part = val.split("_");
+																		//document.getElementById("order"+part[1]).value = key;
+																	}
+																	jQuery.post("/admin/pages/edit/'. $this->pageName .'", {order:order});
+																}
+													});
+								
+								
+								});');
+// $this->jQuery()->addJavascript('');
+?>
+<div class="page-sort">
+Drag the Pages to the desired order
+<form action="" method="post">
+	<fieldset>
+		<ul id="sortable">
+			<?php 
+			foreach($this->orderList as $item) :
+			?>
+				<li class="ui-state-default" id="sort_<?php echo $item['pageId'];?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $item['pageName'];?>
+				<input type="hidden" id="order<?php echo $item['pageId'];?>" name="order_<?php echo $item['pageId']; ?>" value="<?php echo $item['pageOrder']; ?>" />
+				<input type="hidden" name="ids[]" value="<?php echo $item['pageId'];?>" />
+				</li>
+			<?php 
+			endforeach;
+			?>
+		</ul>
+	</fieldset>
+</form>
+</div>
+<?php
+if(isset($this->form)) {
+    echo $this->form;
+    //echo $this->setupEditor('pageText', $options = null, $withFinder = true, ucfirst($this->module));
+} else {
+?>
+<span class="user-notice">The requested page was not found</span>
+<?php
+}
+?>
+<?php $this->headStyle()->captureStart(); ?>
+#sortable { 
+list-style-type: none; 
+margin: 0; 
+padding: 0; 
+width: 30%; 
+}
+#sortable li { 
+margin: 0 3px 3px 3px; 
+padding: 0.4em; 
+padding-left: 1.5em; 
+font-size: 1.4em; 
+height: 18px; 
+}
+#sortable li span { 
+position: absolute; 
+margin-left: -1.3em; 
+}
+<?php $this->headStyle()->captureEnd(); ?>

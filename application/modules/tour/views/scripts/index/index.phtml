@@ -1,0 +1,88 @@
+<?php 
+echo $this->doctype('HTML5');
+?>
+<html>
+<head>
+<meta charset="UTF-8">
+<?php 
+echo $this->headTitle('St. Elias Virtual Tour', 'PREPEND');
+?>
+
+<link rel="stylesheet" href="/lib/dijit/themes/stelias/stelias.css">
+<script 
+data-dojo-config="
+async:1, 
+parseOnLoad: true,
+dojoBlankHtmlUrl: '/lib/dojo/resources/blank.html',
+packages: [ {
+            name: 'aurora',
+            location: '/lib/aurora'
+        } ]"
+src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js">
+</script>
+<script>
+    require(["aurora/tour/app", "dojo/domReady!"], function(tourApp){
+        tourApp.init();
+    });
+</script>
+<?php 
+echo $this->headLink(array('rel' => 'icon', 'href' => '/skins/stelias/images/favicon.ico'), 'PREPEND');
+?>
+<?php 
+$this->headStyle(
+'html, 
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}');
+?>
+</head>
+<body class="claro">
+    <!-- application -->
+    <div id="appLayout" class="demoLayout" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'headline'" style="width:100%; height:100%;">
+        <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
+            <p>Please click on the numbers in the Guide Panel below to begin your virtual tour.</p>
+        </div>
+        <div class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'left'" style="width:400px">
+            <div data-dojo-type="dijit/layout/AccordionContainer" style="height: 500px;">
+                <div data-dojo-type="dijit/layout/ContentPane" title="Guide">
+                    <img id="map" src="/virtualtour/resources/map.png" alt="Floor Plan" usemap="#tourmap" />
+                        <!-- map for the image -->
+                        <map id="tourmap" name="tourmap">
+                            <area shape="rect" class="trigger" alt="" title="St. Maron" coords="213,432,257,455" href="/tour/getimage/large/1/html" />
+                            <area shape="rect" class="trigger" alt="" title="St. Anne" coords="280,402,314,433" href="/tour/getimage/large/2/html" />
+                            <area shape="rect" class="trigger" alt="" title="Jesus, The Good Shepard And The Lost Sheep" coords="282,345,310,375" href="/tour/getimage/large/3/html" />
+                            <area shape="rect" class="trigger" alt="" title="THE SACRED HEART OF JESUS" coords="287,291,316,317" href="/tour/getimage/large/4/html" />
+                            <area shape="rect" class="trigger" alt="" title="St. Nimatullah Hardini" coords="314,325,343,353" href="/tour/getimage/large/5/html" />
+                            <area shape="rect" class="trigger" alt="" title="St. Rafka" coords="298,264,346,285" href="/tour/getimage/large/6/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. JOSEPH" coords="284,237,314,261" href="/tour/getimage/large/7/html" />
+                            <area shape="rect" class="trigger" alt="" title="OUR LADY OF FATIMA" coords="281,179,311,206" href="/tour/getimage/large/8/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. PETER" coords="269,128,305,162" href="/tour/getimage/large/9/html" />
+                            <area shape="rect" class="trigger" alt="" title="THE AGONY IN THE GARDEN" coords="236,82,276,116" href="/tour/getimage/large/10/html" />
+                            <area shape="rect" class="trigger" alt="" title="ARCHANGEL MICHAEL" coords="190,59,222,89" href="/tour/getimage/large/11/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. ELIAS, PROPHET AND PATRON OF THIS CHURCH" coords="140,51,175,77" href="/tour/getimage/large/12/html" />
+                            <area shape="rect" class="trigger" alt="" title="THE ANNUNCIATION" coords="92,61,127,85" href="/tour/getimage/large/13/html" />
+                            <area shape="rect" class="trigger" alt="" title="THE CRUCIFIXION" coords="42,75,77,115" href="/tour/getimage/large/14/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. PAUL" coords="9,125,44,160" href="/tour/getimage/large/15/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. THERESA OF THE CHILD JESUS" coords="4,179,31,208" href="/tour/getimage/large/16/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. ANTHONY OF PADUA" coords="1,233,31,264" href="/tour/getimage/large/17/html" />
+                            <area shape="rect" class="trigger" alt="" title="THE IMMACULATE HEART OF MARY" coords="2,289,30,320" href="/tour/getimage/large/18/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. PHILIP, THE APOSTLE" coords="1,346,32,376" href="/tour/getimage/large/19/html" />
+                            <area shape="rect" class="trigger" alt="" title="MARY, QUEEN OF THE UNIVERSE" coords="1,402,33,431" href="/tour/getimage/large/20/html" />
+                            <area shape="rect" class="trigger" alt="" title="ST. JOHN MARON" coords="56,434,100,465" href="/tour/getimage/large/21/html" />
+                        </map>
+                </div>
+                <div data-dojo-type="dijit/layout/ContentPane" title="Church History" data-dojo-props="href: '/tour/history/html'">
+                </div>
+            </div>
+        </div>
+        <div class="centerPanel" id="tabs" data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region: 'center', tabPosition: 'top'">
+            <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="title: 'Church', href: '/tour/main/html'">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

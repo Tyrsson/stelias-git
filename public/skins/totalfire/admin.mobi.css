@@ -1,0 +1,664 @@
+@charset "UTF-8";
+
+/* CSS Document */
+body {
+	background: #888
+		url(/css/admin/images/dirextion-cms-main-background.jpg) repeat-x;
+	font: .75em/1.4em Helvetica, Arial, sans-serif;
+	color: #444;
+}
+
+a {
+	color: #444;
+}
+
+ul {
+	list-style: none;
+}
+
+:focus {
+	outline: none;
+}
+
+#header {
+	background: url(/css/images/logo.png) no-repeat;
+}
+
+.hidden {
+	display: none;
+}
+
+#header a {
+	color: #000;
+}
+
+.name {
+	color: #888;
+	font-weight: bold;
+}
+
+.email {
+	color: #830001;
+	font-style: italic;
+}
+
+#header_info {
+	width: 300px;
+	float: right;
+	height: 70px;
+}
+
+#info_left {
+	width: 190px;
+	border-right: 1px solid gray;
+	float: left;
+	height: 70px;
+	text-align: right;
+	padding: 10px 10px 0 0;
+}
+
+hr.clear {
+	clear: both;
+	background-color: #C3C3C3;
+	color: #C3C3C3;
+	border: 0;
+}
+
+#info_right {
+	float: left;
+	margin-left: 20px;
+	width: 70px;
+	border: 2px solid #830001;
+	height: 70px;
+}
+
+legend {
+	background: none;
+}
+
+fieldset {
+	background: #888;
+	color: #e5e5e5;
+	margin-bottom: 20px;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+input,select,textarea {
+	border: 1px solid #444;
+	color: #444;
+	padding: 2px;
+}
+
+input.publish,#login input.publish,a.publish {
+	background: url(/css/admin/images/dirextion-employee-link-bkg.png)
+		repeat-x;
+	border: 0;
+	color: #e5e5e5;
+	font-size: 1.167em;
+	font-weight: bold;
+	line-height: 30px;
+	height: 30px;
+	padding: 0 10px;
+	cursor: pointer;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+a.publish {
+	display: block;
+	float: left;
+	margin: 10px 0;
+	text-decoration: none;
+}
+
+.delete .publish {
+	float: left;
+	margin: 10px;
+}
+
+input.publish-right {
+	background: url(/css/admin/images/dirextion-employee-link-bkg.png)
+		repeat-x;
+	border: 0;
+	color: #e5e5e5;
+	font-size: 1.167em;
+	font-weight: bold;
+	line-height: 30px;
+	height: 30px;
+	padding: 0 10px;
+	cursor: pointer;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin: 10px 0;
+	float: right;
+}
+
+legend {
+	background: #888;
+	color: #e5e5e5;
+	font-size: 1.334em;
+	font-weight: bold;
+	padding: 5px 15px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+textarea {
+	font: 1em Helvetica, Arial, sans-serif;
+	width: 99%;
+}
+/* main document structure with sticky footer */
+html,body,#wrap {
+	height: 100%;
+}
+
+body>#wrap {
+	height: auto;
+	min-height: 100%;
+}
+
+#main {
+	padding-bottom: 80px;
+}
+
+#footer {
+	background: url(/css/admin/images/dirextion-cms-footer-background.jpg)
+		repeat-x;
+	clear: both;
+	height: 80px;
+	margin-top: -80px;
+	position: relative;
+}
+
+#content,#footercontent,#breadcrumbs {
+	width: 984px;
+}
+
+#content,#footercontent {
+	margin: 0 auto;
+}
+
+#footercontent {
+	font-size: 0.834em;
+	font-weight: bold;
+	height: 80px;
+	line-height: 80px;
+	text-align: right;
+}
+
+#footercontent,#footercontent a {
+	color: #e5e5e5;
+}
+/* inner structure and content */
+#header {
+	height: 75px;
+	padding: 10px 0;
+}
+
+#breadcrumbs {
+	color: #e5e5e5;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+}
+
+#breadcrumbs .arrow {
+	background: url(/css/admin/images/breadcrumb-arrow.png) no-repeat;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+}
+
+#breadcrumbs a {
+	color: #e5e5e5;
+	text-decoration: none;
+}
+
+#breadcrumbs a:hover {
+	text-decoration: underline;
+}
+/* nav is the main left column with the navigation, modulecol0 is the main right column for content */
+#nav,#right-column {
+	padding-top: 20px;
+}
+
+#nav {
+	color: #e5e5e5;
+	float: left;
+	font-weight: bold;
+	width: 250px;
+}
+
+#nav a {
+	color: #e5e5e5;
+	text-decoration: none;
+}
+
+#dashlink a,#accordion div.title a,#accordion div.nontitle a,#emplink a,#cmslink div.title a,#gotodemo a,.navigation a
+	{
+	text-decoration: none;
+	display: block;
+	height: 30px;
+	padding-left: 22px;
+	margin-left: 10px;
+	width: 218px;
+}
+
+#nav a:hover,#accordion .title a:hover,#accordion .nontitle a:hover,#cmslink .title a:hover
+	{
+	text-decoration: underline;
+}
+
+#dashlink,#gotodemo {
+	background: url(/css/admin/images/dirextion-dashboard-link-bkg.jpg)
+		repeat-x;
+	height: 30px;
+	line-height: 30px;
+	width: 250px;
+	/* ie gets no rounded corners. so sad. but not really. */
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#dashlink a {
+	background: url(/css/admin/images/homeicon.png) no-repeat center left;
+}
+
+#gotodemo a {
+	background: url(/css/admin/images/cmsicon.png) no-repeat center left;
+}
+/* accordion and nav items */
+/* refer to accordion.css */
+#accordion,#emplink,#cmslink {
+	margin-top: 20px;
+	width: 250px;
+}
+
+#emplink {
+	background: url(/css/admin/images/dirextion-employee-link-bkg.png)
+		repeat-x;
+	height: 30px;
+	line-height: 30px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#emplink a {
+	background: url(/css/admin/images/employeeicon.png) no-repeat center
+		left;
+}
+
+#right-column {
+	float: right;
+	width: 714px;
+	min-height: 500px;
+}
+
+#right-column dt {margin-top: 10px;}
+
+#right-column h2 {
+	background: #5b5b5b;
+	color: #e5e5e5;
+	padding: 0 10px;
+	height: 40px;
+	line-height: 40px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+
+#right-columncontent {
+	width: 694px;
+}
+
+#right-column .content {
+	overflow: auto;
+}
+
+#right-column .content {
+	min-height: 90px;
+}
+
+#right-column .content {
+	background: #c3c3c3;
+	margin-bottom: 20px;
+	padding: 10px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+#right-column .left,#right-column .right {
+	width: 347px;
+}
+
+#right-column .left {
+	float: left;
+	width: 494px;
+	margin-right: 20px;
+}
+
+#right-column .right {
+	float: left;
+	width: 200px;
+}
+
+#right-column .full {
+	width: 714px;
+	clear: both
+}
+
+/* this is for the login page only */
+#login {
+	color: #444 !important;
+	font-size: 1em;
+	/*height: 200px;*/
+	left: 50%;
+	margin-left: -200px;
+	position: relative;
+	top: 60px;
+	width: 400px;
+}
+
+#login label,#login input[type="text"],#login input[type="password"] {
+	display: block;
+}
+
+#login input[type="text"],#login input[type="password"] {
+	font-size: 2em;
+	line-height: 2em;
+	padding: 9px 7px 5px 7px;
+	width: 340px;
+}
+
+#login label,#login .error {
+	color: #c3c3c3;
+	font-size: 150%;
+}
+
+#login .error {
+	margin-top: 10px;
+	text-align: center;
+}
+
+#login fieldset {
+	background: #444;
+	padding: 20px;
+}
+
+#login input {
+	border: 3px solid #aaa;
+	color: #444;
+	margin-bottom: 1em;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#login label {
+	margin-bottom: 10px;
+}
+
+#login input[type="submit"] {
+	background: url(/css/admin/images/dirextion-cms-footer-background.jpg)
+		repeat-x;
+	border: 0;
+	color: #e5e5e5;
+	font-size: 1.5em;
+	line-height: 30px;
+	height: 50px;
+	margin-bottom: 0;
+	padding: 0 10px;
+	cursor: pointer;
+	text-align: right;
+}
+
+#login .passrecover {
+	text-align: center;
+}
+
+#login .passrecover,#login .passrecover a {
+	color: #e5e5e5;
+}
+
+#submit-element {
+	text-align: right;
+}
+/* customs */
+.confirm,.stickyconfirm {
+	background: #5b5b5b url(/css/admin/images/confirmicon.png) no-repeat;
+	background-position: 10px 5px;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 10px;
+	padding: 0;
+	padding-left: 35px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.confirm,.confirm a,.stickyconfirm,.stickyconfirm a {
+	color: #e5e5e5;
+}
+
+.counter {
+	border: none;
+	background: none;
+	padding: none;
+	text-align: right;
+}
+
+.download {
+	background: url(/css/admin/images/dirextion-employee-link-bkg.png)
+		repeat-x;
+	border: 0;
+	color: #e5e5e5;
+	display: inline-block;
+	font-weight: bold;
+	line-height: 30px;
+	height: 30px;
+	padding: 0 10px;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.download:hover {
+	text-decoration: underline;
+}
+
+.innerbox {
+	background: #888;
+	color: #e5e5e5;
+	padding: 10px;
+	width: 307px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.login {
+	font-weight: bold;
+	padding: 4px;
+}
+
+.password,.username {
+	padding: 4px 0;
+	width: 98px;
+}
+
+.underline {
+	border-bottom: 1px solid #5b5b5b;
+}
+/* pagination */
+.pagination {
+	padding: 20px 0 10px !important;
+}
+
+.pagination a {
+	background: url(/css/admin/images/dirextion-dashboard-link-bkg.jpg)
+		repeat-x;
+	color: #e5e5e5;
+	font-weight: bold;
+	padding: 7px 9px 6px;
+	text-decoration: none;
+	text-transform: capitalize;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.pagination a.selected,.pagination a:hover {
+	background: url(/css/admin/images/dirextion-employee-link-bkg.png)
+		repeat-x;
+}
+
+.pagination a:hover {
+	text-decoration: underline;
+}
+
+#current-slides {
+
+}
+
+#slide {
+	padding: 5px;
+	float: left;
+	width: 98px;
+	margin: 0 10px 10px 0;
+}
+
+#slide img,#slide a {
+	float: left;
+	display: block;
+}
+
+#add-slide {
+	width: 76%;
+	float: left;
+	clear: both;
+}
+
+#fieldset-upload_slide {
+	border: none;
+	margin-top: 10px;
+}
+
+#upload_slide dt {
+	display: none;
+}
+
+#upload_slide dd {
+	float: left;
+}
+
+#upload_slide #submit-element {
+	margin-left: 20px;
+}
+
+.delete p {
+	margin-bottom: 10px;
+	float: left;
+	width: 100%;
+}
+
+.delete img {
+	margin-bottom: 10px;
+}
+
+.delete a {
+	display: inline-block;
+}
+
+.input {
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: white;
+	border: 1px solid #d6d6d6;
+	font-size: 13px;
+	height: 20px;
+	width: 70%;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+label {
+	width: 200px;
+	display: block;
+	margin: 0 0 5px;
+}
+
+textarea {
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: white;
+	border: 1px solid #d6d6d6;
+	font-size: 13px;
+	padding: 5px;
+	margin-bottom: 10px;
+	width: 98%;
+}
+
+#sort ul {
+	width: 450px;
+	list-style: none;
+}
+
+#sort ul li {
+	height: 105px;
+	width: 200px;
+	padding: 5px;
+	font-size: 14px;
+	position: relative;
+	float: left;
+	text-align: center;
+}
+
+#sort ul img {
+	float: left;
+	height: 100px;
+	margin-right: 20px;
+}
+
+.checklist-li li.alt {
+	background-color: #ddd;
+}
+
+.checklist-li li:hover {
+	background-color: #aaa;
+}
+
+ul.list li {
+	height: auto;
+	padding: 5px;
+	position: relative;
+	clear: both;
+	overflow: auto;
+}
+
+ul.list li .edit {
+	position: absolute;
+	top: 7px;
+	right: 30px;
+}
+
+ul.list li .delete {
+	width: 18px;
+	height: 18px;
+	margin: 6px;
+	background: url(/css/admin/images/icon-sprite.png) no-repeat 0 0;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -1000px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+ul.list li .delete:hover {
+	background-position: 0 -24px;
+}

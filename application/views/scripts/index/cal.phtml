@@ -1,0 +1,24 @@
+<div id="cal">
+<?php 
+if(isset($this->cal))
+{
+	if(is_array($this->cal))
+	{
+		$this->cal['entry3']['day'] =  'Sunday';
+		 $this->cal['entry3']['content'] = 'Some more even data';
+		foreach($this->cal as $entry)
+		{
+			if(is_array($entry))
+			{
+				foreach($entry as $day)
+				{?>
+					<div class="cal_event"><?php echo $day; ?></div>
+		<?php   }
+			}
+		}
+	}
+}
+?>
+	<h2>Cal Page</h2>  
+
+</div>

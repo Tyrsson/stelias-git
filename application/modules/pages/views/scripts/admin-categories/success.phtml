@@ -1,0 +1,13 @@
+<?php
+if(isset($this->messages)) {
+    
+    if(is_array($this->messages)) {
+        
+        echo implode($this->messages);
+        
+    } else {
+        echo $this->messages;
+    }
+    
+}
+?>

@@ -1,0 +1,58 @@
+<?php
+if($this->cmd === 'save') :
+?>
+<table id="menuItems">
+<?php //Zend_Debug::dump($this->currentItems); ?>
+    <caption>Current Menu Items for <?php echo isset($this->menuName) ? $this->menuName : 'Name not found?'; ?></caption>
+        <tr>
+            <th>Pickup only Item</th>
+            <th>Item Type</th>
+            <th>Item Name</th>
+            <th>Item Description</th>
+            <th>Unit Price</th>
+            <th>Admin Options</th>
+        </tr>
+        <!-- ajaxed in -->
+        <?php
+        if(isset($this->currentItems) && (count($this->currentItems) > 0) )
+        {
+            foreach($this->currentItems as $item)
+            {
+        ?>
+        <tr class="item_<?php echo $item->id;?>" style="border-bottom:1px solid #CCC;">
+            <td><?php echo (bool)$item->pickupOnly ? 'Yes' : 'No'; ?></td>
+            <td><?php echo isset($item->itemType) ? $item->itemType : 'Item Type not found'; ?></td>
+            <td><?php echo isset($item->itemName) ? $item->itemName : 'Item Name not found'; ?></td>
+            <td><?php echo isset($item->itemDesc) ? $item->itemDesc : 'Item Description not found'; ?></td>
+            <td><?php echo isset($item->itemName) ? $item->price : 'Item Price not found'; ?></td>
+            <td>
+                <a class="item-edit" href="/admin/festival/edit-item/<?php echo $item->menuId;?>/<?php echo $item->id;?>">Edit</a>
+                <a class="item-edit" href="/admin/festival/delete-item/<?php echo $item->menuId;?>/<?php echo $item->id;?>">Delete</a>
+            </td>
+        </tr>
+        <?php
+            }
+        }
+        else {
+        ?>
+        <tr>
+            <td>There is no current Items saved for this Menu</td>
+        </tr>
+        <?php
+        }
+        ?>
+</table>
+<?php
+endif;
+?>
+<?php
+if($this->cmd === 'getform') :
+?>
+<table id="menuItemsForm">
+    <tr>
+        <td><?php echo isset($this->form) ? $this->form : 'Form class not found !'; ?></td>
+    </tr>
+</table>
+<?php
+endif;
+?>

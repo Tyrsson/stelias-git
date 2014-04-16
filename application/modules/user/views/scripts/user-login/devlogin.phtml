@@ -1,0 +1,23 @@
+<div id="user-login-content">
+	<div id="user-login-form">
+      <h2>Login</h2>
+<?php 
+if(isset($this->messages) || isset($this->message)) {
+	
+	if(is_array($this->messages)) {
+		
+		echo '<span>', implode($this->messages) ,'</span>';
+		
+	} else {
+		echo $this->message;
+	}
+}
+?>
+
+<?php 
+if(isset($this->form)) {
+	echo $this->form; 
+}
+?>
+	</div>
+</div>

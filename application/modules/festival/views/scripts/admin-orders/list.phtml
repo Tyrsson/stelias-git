@@ -1,0 +1,67 @@
+<?php
+$currency = new Zend_Currency('en_US');
+$currencyHelper = new Zend_View_Helper_Currency($currency);
+
+// $this->jQuery()->addJavascript('jQuery(function(){
+//                                              $( "a.details" ).button().click(function( event ) {
+//                                                                                event.preventDefault();
+//                                                                                                    });
+//                                                });');
+
+
+?>
+<div id="tables" class="block">
+
+<!-- <form action="" method="post"> -->
+<table id="order-overview">
+    <caption id="caption"><?php echo ucfirst($this->type); ?> Orders Overview</caption>
+    <tbody>
+
+        <tr>
+            <td id="sort-control"><?php echo isset($this->form) ? $this->form : '&nbsp;';?></td>
+        </tr>
+
+        <?php
+//Zend_Debug::dump($this->orders);
+if(count($this->orders) >= 1) {
+?>
+
+        <tr id="headings">
+            <th>Purchaser</th>
+            <th id="total">Total</th>
+            <th id="phone">Phone</th>
+            <th>Time</th>
+            <!-- this needs to be far right -->
+            <th id="details"> Details</th>
+        </tr>
+<?php
+    // we can run a foreach here
+    foreach($this->orders as $order) {
+    // we want one row per order
+    ?>
+        <tr class="order">
+            <td><?php echo $order->name; ?></td>
+            <td><?php echo $currencyHelper->currency($order->total); ?></td>
+            <td><?php echo $order->phone; ?></td>
+            <td><?php echo $order->time; ?></td>
+            <td>&nbsp;
+                <?php
+                // need zend date object to build and normalize the delivery / pickup time from what is stored in the db
+                ?>
+            </td>
+            <!-- this needs to be far right -->
+            <td><a class="button" href="/admin/festival/orders/display/<?php echo $order->orderId; ?>">Order Details</a></td>
+        </tr>
+ <?php
+    }
+?>
+<?php
+}
+?>
+    </tbody>
+</table>
+<div class="clear"></div>
+<div class="box"><?php echo $this->paginationControl($this->orders,'Sliding','pagination_control.phtml', array('type' => $this->type, 'page' => $this->page)); ?></div>
+<!-- </form> -->
+
+</div>

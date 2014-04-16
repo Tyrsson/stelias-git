@@ -1,0 +1,9 @@
+<h6>The editor below is present to provide access to the file browser, please click the image icon to proceed!</h6>
+<?php
+if(isset($this->messages)) {
+	echo '<h4>' . implode($this->messages) . '</h4>';
+}
+if(isset($this->form)) {
+	echo $this->form;
+}
+	echo $this->setupEditor('finder', $options = null, $withFinder = true, ucfirst($this->module));

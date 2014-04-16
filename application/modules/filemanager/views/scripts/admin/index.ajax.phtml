@@ -1,0 +1,61 @@
+<?php 
+// if(isset($this->form)) {
+//     echo $this->form;
+// }
+?>
+
+<script type="text/javascript">
+require(
+["dojo/query", "dojo/ready", "dijit/registry", "dojo/on", "dojo/parser", "dijit/form/Form", "dojox/form/Manager", "dijit/form/Button", "dijit/form/ValidationTextBox", "dijit/form/DateTextBox", "dojox/form/Uploader", "dojox/form/uploader/FileList"],
+function(query, ready, registry, on, form, manager, uploader){
+
+	var title = 'testing';
+	
+	var handleUpload = function(upl, node){
+// 		if(plug == "Form"){
+// 			dojo.on(upl, "onChange", function(){
+// 				node.appendChild(dojo.create('div', {innerHTML:"This Uploader does not work in Form mode."}));
+// 				//alert("This Uploader does not work in Form mode.")
+// 			});
+// 		}
+		on(upl, "onComplete", function(dataArray){
+			dojo.forEach(dataArray, function(file){
+				console.log("display: " + file);
+
+				//var div = dojo.create('div', {className:'thumb'});
+				//var span = dojo.create('span', {className:'thumbbk'}, div);
+				//var img = dojo.create('img', {src:file.file}, span);
+				//node.appendChild(div);
+			});
+		});
+	};
+
+	
+    ready(function(){
+    	//dojo.addClass(dojo.body(), plug);
+		dojo.query('h1')[0].innerHTML = title;
+		on(dijit.byId("remBtn"), "onClick", dijit.byId("uploader"), "reset");
+		handleUpload(dijit.byId("uploader"), dojo.byId('colImages'));
+    });
+});
+</script>
+
+	<table class="pageTable" role="presentation">
+		<tr>
+			<td id="colForm">
+				<form method="post" action="/admin/bulletin" id="myForm" enctype="multipart/form-data" >
+					<fieldset>
+						<legend>Form Post Test</legend>
+						<input class="browseButton" name="uploadedfile" multiple="true" type="file" data-dojo-type="dojox/form/Uploader" label="Select Some Files" id="uploader">
+						<input type="text" name="album" value="Test Album" aria-label="album" />
+						<input type="text" name="year" value="2011" aria-label="year" />
+						<input type="button" id="remBtn" label="Clear" data-dojo-type="dijit/form/Button" />
+						<input type="submit" label="Submit" data-dojo-type="dijit/form/Button" />
+						<div id="files" data-dojo-type="dojox/form/uploader/FileList" uploaderId="uploader"></div>
+					</fieldset>
+				</form>
+			</td>
+			<td id="colImages">
+			</td>
+		</tr>
+	</table>

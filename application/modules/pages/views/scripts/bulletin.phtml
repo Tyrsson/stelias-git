@@ -1,0 +1,17 @@
+<?php
+if(count($this->records)) 
+{
+?>
+    <ul>
+        <?php 
+        foreach($this->records as $record) 
+        {
+        ?>
+        <li class="buttonList"><a class="linkButton" href="<?php echo $this->path . '/' . $record->fileName; ?>"><?php echo $record->title !== null ? $record->title : $record->fileName; ?></a>
+       <?php    
+        }
+        ?>
+    </ul>
+<?php 
+}
+?>

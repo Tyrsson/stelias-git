@@ -1,0 +1,91 @@
+<!-- start search -->
+<div id="search-widget">
+<?php
+if($this->appSettings->enableSearch && !IS_MOBILE)
+{
+    echo new Search_Form_QuickSearch();
+}
+?>
+</div>
+<!-- end search -->
+
+<!-- start contact details -->
+<?php 
+if(!IS_MOBILE) {
+?>
+<div id="contact-info">
+    <div id="contact-info-blurb"><?php echo !empty($this->appSettings->headerBlurbText) ? $this->appSettings->headerBlurbText : '' ?></div>
+	<div id="contact-info-number"><?php echo !empty($this->appSettings->headerPhoneNumber) ? $this->appSettings->headerPhoneNumber : '' ?></div>
+</div>
+<?php 
+} 
+?>
+<!-- end contact details -->
+
+
+    <div id="master-container">
+        <?php
+        if(!$this->isHome) {
+        ?>
+            <div id="subpage-nav-wrapper">
+                <div id="subpage-nav-icon-holder"></div>
+            	<div id="subpage-nav">
+            		<?php
+            		if($this->page['hasSubPages'] && $this->page['pageUrl'] !== 'home') {
+        				if(isset($this->page['parentPage']) && $this->page['parentPage'] instanceof Pages_Model_Row_Page) {
+        					if($this->page['parentPage']->pageUrl !== 'home') {
+        						echo '<a href="/'.$this->page['parentPage']->pageUrl.'">'.$this->page['parentPage']->pageName.'</a>';
+        			            //echo $this->ajaxLink(ucwords($this->page['parentPage']->pageName), '/' . $this->page['parentPage']->pageName, array('noscript' => true, 'method' => 'post', 'update' => '#page-body'));
+        					}
+        				}
+        				if(!IS_MOBILE)
+            			echo $this->navigation()->menu()->renderMenu($this->subPageNav);
+            		} ?>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        <?php
+        }
+        ?>
+        <?php
+    	    echo $this->layout()->content;
+    	?>
+	</div><!-- close master-container -->
+	
+	
+	<!-- show recent images in home page widget -->
+	
+	    <?php
+    if($this->settings->showRecentInHomeWidget) {
+        if(count($this->recentImages) > 0) { ?>
+            <div id="recent-widget">
+                <div class="widget-table">
+                    <ul class="table-row">
+                        <li class="table-cell">
+                            <div class="recent-image-container">
+                                <div class="cell-heading-top-margin"></div>
+                                <h3 class="cell-heading">Recent Images</h3>
+                                <div class="widget-table">
+                                    <ul class="table-row">
+                                    <?php
+                                    foreach($this->recentImages as $image) {
+                                       $album = $this->album->fetchById($image->albumId);
+                                    ?>
+                                        <li class="table-cell">
+                                        <a class="recent-image" href="/<?php echo $this->mediaPageName.'?albumName='.$album->albumName.'&amp;action=album#media-gallery'?>">
+                                            <img src="<?php echo Media_Model_Files::MEDIA_BASE_THUMB_PATH . '/' . $image->serverPath . '/' . $image->fileName; ?>" alt="<?php echo !empty($image->alt) ? $image->alt : '';?>" />
+                                        </a>
+                                        </li>
+                              <?php }?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    <?php
+        }
+    }
+    ?>
+    <!-- END show recent images in home page widget -->

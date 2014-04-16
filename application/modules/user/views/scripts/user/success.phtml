@@ -1,0 +1,33 @@
+<div id="user-success-content">
+	<div id="user-success-form">
+  <h2>Success</h2>
+<?php 
+if(isset($this->messages) || isset($this->message)) {
+	
+	if(is_array($this->messages)) {
+		
+		echo '<span>', implode($this->messages) ,'</span>';
+		
+	} else {
+		echo $this->message;
+	}
+}
+?>
+<?php 
+if(isset($this->form)) {
+	echo $this->form; 
+}
+?>
+	</div>
+</div>
+
+
+<?php $this->headStyle()->captureStart(); ?>
+#user-success-content {
+
+}
+#user-success-form {
+
+}
+
+<?php $this->headStyle()->captureEnd(); ?>

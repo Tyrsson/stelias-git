@@ -1,0 +1,2 @@
+<?php
+class System_Service_PayPal_Data_Exception extends System_Service_PayPal_Exception {}

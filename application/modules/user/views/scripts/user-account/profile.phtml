@@ -1,0 +1,14 @@
+<?php 
+if(Zend_Auth::getInstance()->hasIdentity())
+{
+	$userInfo = Zend_Auth::getInstance()->getIdentity();
+}
+?>
+<div id="user_index_wrapper">
+	<ul>
+		<li><a href="/user/admin/edit/<?php echo $userInfo->userId; ?>"></a></li>
+	</ul>
+</div>
+
+
+

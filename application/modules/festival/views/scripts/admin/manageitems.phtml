@@ -1,0 +1,95 @@
+<?php
+if(isset($this->messages)) {
+
+    //$this->jQuery()->addJavascript('');
+
+    //echo $this->jQuery()->dialogContainer('system-message', implode($this->messages), null, null);
+}
+
+$this->jQuery()->addJavascript('
+
+        $(document).ready(function() {
+    var options = {
+        target:        "#menuItems",   // target element(s) to be updated with server response
+        data: {format:"html", menuName: "'.$this->menuName.'"},
+        clearForm: true,
+
+        //beforeSubmit:  showRequest,  // pre-submit callback
+        //success:       updateTest  // post-submit callback
+
+
+    };
+
+    $("#manageMenuItems").submit(function() {
+
+        // wrap it in a jQuery object and then invoke ajaxSubmit
+        $(this).ajaxSubmit(options);
+
+        // !!! Important !!!
+        // always return false to prevent standard browser submit and page navigation
+        return false;
+    });
+});
+
+');
+?>
+
+<table>
+    <caption>Manage Menu Items</caption>
+    <tr>
+        <td>
+            <table id="menuItemsForm">
+
+                <tr>
+                    <td><?php echo isset($this->form) ? $this->form : 'Form class not found !'; ?></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table id="menuItems">
+                <caption>Current Menu Items for <?php echo isset($this->menuName) ? $this->menuName : 'Name not found?'; ?></caption>
+                <tr>
+                    <th>Pickup only Item</th>
+                    <th>Item Type</th>
+                    <th>Item Name</th>
+                    <th>Item Description</th>
+                    <th>Unit Price</th>
+                    <th>Admin Options</th>
+                </tr>
+                <!-- the below will be built in a loop and will output the items in the menu -->
+                <?php
+                if(isset($this->currentItems) && (count($this->currentItems) > 0) )
+                {
+
+                    foreach($this->currentItems as $item)
+                    {
+                ?>
+                <tr class="item_<?php echo $item->id;?>" style="border-bottom:1px solid #CCC;">
+                    <td><?php echo (bool)$item->pickupOnly ? 'Yes' : 'No'; ?></td>
+                    <td><?php echo isset($item->itemType) ? $item->itemType : 'Item Type not found'; ?></td>
+                    <td><?php echo isset($item->itemName) ? $item->itemName : 'Item Name not found'; ?></td>
+                    <td><?php echo isset($item->itemDesc) ? $item->itemDesc : 'Item Description not found'; ?></td>
+                    <td><?php echo isset($item->itemName) ? $item->price : 'Item Price not found'; ?></td>
+                    <td>
+                        <a class="button" style="margin-bottom: 5px;" href="/admin/festival/edit-item/<?php echo $item->menuId;?>/<?php echo $item->id;?>">Edit</a>
+                        <a class="button" href="/admin/festival/delete-item/<?php echo $item->menuId;?>/<?php echo $item->id;?>">Delete</a>
+                    </td>
+                </tr>
+                <?php
+                    }
+                }
+                else {
+                ?>
+                <tr>
+                    <td>There is no current Items saved for this Menu</td>
+                </tr>
+                <?php
+                }
+                ?>
+            </table>
+
+        </td>
+    </tr>
+</table>

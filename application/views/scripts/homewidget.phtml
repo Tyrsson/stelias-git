@@ -1,0 +1,23 @@
+<div class="block">
+		<?php
+    	$subPageCount = count($this->widgetPages);
+    	?>
+    	<ul class="subpage-links">
+    		<?php
+    		foreach($this->widgetPages as $widget) :
+    		    if( (bool) $widget->showInHomeWidget) :
+    		?>
+					<li><a href="/<?php echo $widget->pageUrl; ?>"><?php echo $widget->pageName; ?></a></li>
+					
+					
+    		        <?php
+    		        //echo substr($widget->pageText, 3, $this->settings->hwBlurbLength) . '<a href="'.$widget->pageUrl.'">. ... Read More</a>';
+    		        ?>
+                   
+    		<?php
+    		    endif;
+    		endforeach;
+    		?>
+    		</ul>
+</div>
+

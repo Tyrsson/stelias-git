@@ -1,0 +1,27 @@
+<div id="media-albums-container">
+	<h3>Albums view :</h3>
+
+<?php
+if(isset($this->data->paginator)) {
+	if(count($this->data->paginator) >= 1) {
+		foreach($this->data->paginator as $album) { ?>
+
+            <?php if( (!isset($album->parentId)) || ($album->parentId < 0) ) : ?>
+			<div class="album-icon">
+				<img src="/modules/media/images/albumicon-default.png" alt="icon" height="115" width="130" />
+				<h4 class="album-name"><?php echo  '<a href="'. $this->data->pageName .'?albumName='.$album->albumName.'&amp;action=album#media-gallery">'.$album->albumName.'</a>';?></h4>
+			</div>
+			<?php endif;?>
+			
+<?php } ?>
+        <br />
+        
+        <?php 
+		echo $this->paginationControl($this->data->paginator,'Elastic','pagination_control_albumview.phtml', array('pageName' => $this->data->pageName, 'albumName' => $this->data->albumName, 'action' => $this->data->action));
+		?>
+		
+<?php } 
+	
+}
+?>
+</div>

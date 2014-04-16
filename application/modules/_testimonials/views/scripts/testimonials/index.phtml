@@ -1,0 +1,55 @@
+<?php
+$date = new Zend_Date ();
+?>
+<div id="page-text">
+<h4 class="tst-heading"><?php echo ucfirst($this->module); ?></h4>
+
+<div class="tst-listing">
+<?php if (count($this->paginator))  { ?>
+    <?php foreach($this->paginator as $entry) { ?>
+    
+           <?php
+    		if (is_object ( $entry ) ) {
+    			?>
+    	<div class="tst-body-wrapper">
+           <div class="details">
+    				<span class="tst-name"><?php echo $entry->guestName;?></span>
+    			<?php
+    			if (isset ( $entry->rating )) {
+    				$count = ( int ) $entry->rating;
+    				for($i = 0; $i < $count; $i ++) {
+    			?>
+           		<span class="tst-rating">&nbsp;</span>
+            <?php
+    				}
+    
+           	   }
+    			?>
+           <br />
+            </div>
+    			
+    				<p class="tst-text"><?php echo $entry->content;?></p>
+    			
+    		<?php
+    		}
+    		?>
+    		
+    		</div>
+    
+    <?php } ?>
+<?php } ?>
+</div>
+<?php if($this->appSettings->allowUserPostNew && $this->acl->isAllowed($this->user->role, $this->module,  'testimonials.post.new') 
+		||$this->acl->isAllowed($this->user->role, $this->module,  'testimonials.manage') ) { ?>
+	<div id="sbt-test">
+		<p><a href="/testimonials/submit">Submit a Testimonial</a></p>
+	</div>
+
+<?php } ?>
+<div id="page_control">
+<?php echo $this->paginationControl($this->paginator,'Sliding','pagination_control.phtml'); ?>
+</div>
+	</div>
+<?php $this->headStyle()->captureStart(); ?>
+
+<?php $this->headStyle()->captureEnd(); ?>

@@ -1,0 +1,198 @@
+<?php
+/* Start html output
+ * Set a valid doctype
+ */
+//Print doctype to browser
+echo $this->doctype();
+//$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')->appendHttpEquiv('Content-Language', 'en-US');
+?>
+<html <?php echo $this->xmlnsHelper();?>>
+<head>
+        <?php
+        //Set formatted output indent TODO: Needs tweaked
+        $this->headMeta()->setIndent('    ') . "\n";
+        $this->seoHelper($this->keyWords);
+        if(IS_MOBILE) {
+            $this->headMeta()->setName('viewport', 'width=device-width, initial-scale=1,maximum-scale=1');
+        }
+
+        //Print to browser
+        echo $this->headMeta();
+        //Set title seperator
+        $this->headTitle()->setSeparator(' - ');
+
+        /* Please note this will be prepended too through out the script
+         * @uses Dxcore_Controller_Plugin_Pagetitle
+         */
+        //Set the default page title
+        echo $this->siteName();
+        ?>
+
+        <base href="<?php /* This allows the server protocol to determine the base*/ echo $this->scheme .'://'. $this->host; ?>/" />
+        <?php
+        $this->headLink()->prependStylesheet($this->scheme.'://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', 'screen');
+
+		//Any remaining styles?
+        $this->siteStyles();
+
+        echo $this->headLink();
+        echo $this->headStyle();
+
+        $this->jQuery()->addJavascript('jQuery(function(){
+                                            jQuery(".navigation").addClass("nav main");
+                                       });');
+
+        if($this->jQuery()->isEnabled() || $this->jQuery()->uiIsEnabled()) :
+            if($this->scheme === 'https') {
+                $this->jQuery()->setCdnSsl(true);
+        }
+		echo $this->jQuery();
+
+		//$this->headScript()->appendFile('/js-src/aurora.js', 'text/javascript', null);
+
+		endif;
+
+        echo $this->headScript();
+        ?>
+</head>
+<body class="light-bg">
+<div class="container_16">
+	<div class="grid_4">
+		<div class="box">
+			<div class="block">
+				<h1 class="logo-area dark-bg radius txt-light txt-large">
+					<?php
+					echo (isset($this->appSettings->siteName) && !empty($this->appSettings->siteName)) ? $this->appSettings->siteName : '';
+					?>
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div class="grid_4">
+		<div class="box">
+			<div class="block">
+    			<?php
+    			if(!empty($this->appSettings->headerBlurbText))
+    			{
+    			echo '<span class="txt txt-dark">'.$this->appSettings->headerBlurbText.'</span>';
+    			}
+    			?>
+			</div>
+		</div>
+	</div>
+	<div class="grid_4">
+		<div class="box">
+			<div class="block">
+    			<?php
+    			if(!empty($this->appSettings->headerBlurbTextTwo))
+    			{
+    			echo '<span class="txt txt-dark">'.$this->appSettings->headerBlurbTextTwo.'</span>';
+    			}
+    			?>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="grid_16">
+        <div id="main-nav">
+        <?php
+    	    //if(!IS_MOBILE)
+    		    echo $this->navigation()->menu();
+    	?>
+    	</div>
+	</div>
+	<div class="clear"></div>
+	<div class="grid_16">
+
+        <?php
+        if($this->isHome) {
+        ?>
+
+            <?php
+//             if($this->appSettings->enableWelcomeText)
+//             {
+//             ?>
+<!--             <div class="welcome txt txt-dark"> -->
+<!--             	<span class="welcome-intro txt txt-dark">Welcome!</span> -->
+
+            	<?php
+//             	if(!empty($this->appSettings->welcomeText))
+//             	{
+//             	?>
+            	<span class="welcome-text"><?php //echo $this->appSettings->welcomeText; ?></span>
+            	<?php
+//             	}
+//             	?>
+
+<!--             </div> -->
+            <?php
+//             }
+//             ?>
+
+        <?php
+        } else {
+        ?>
+
+        <?php
+        }
+        ?>
+    </div>
+<!--     <div class="clear"></div> -->
+        <?php
+    	echo $this->layout()->content;
+    	?>
+        <?php
+		$this->appSettings->enableRelatedPages = true;
+		if($this->appSettings->enableRelatedPages) {
+        ?>
+        
+		<?php
+		}
+		?>
+        <div class="clear"></div>
+		<div id="site_info" class="grid_16">
+			<div class="box radius">
+			    <p>
+				<?php
+				if(isset($this->appSettings->footerText) && !empty($this->appSettings->footerText)) {
+				?>
+				    <span><?php echo $this->appSettings->footerText; ?></span>
+		        <?php 
+                } 
+                ?>
+				<a>&copy;&nbsp;
+				<?php 
+				$startYear = 2011; $thisYear = date('Y');
+				if ($startYear == $thisYear) :
+				    echo $startYear;
+				else :
+				    echo "{$startYear}-{$thisYear}";
+				endif;
+				?>
+				<?php echo $this->appSettings->siteName; ?>&nbsp;|&nbsp;
+				</a>
+				<span>Site by <a href="http://dirextion.com">Dire<span class="dxX">X</span>tion</a></span>
+		        <?php
+				if($this->appSettings->enableFooterLoginLink) { ?>
+				<?php 
+				if($this->isLogged) { 
+                ?>
+		        <a href="/admin/index">ADMIN AREA</a> /
+		        <a href="/user/login/logout">LOGOUT</a>
+				<?php 
+                }
+				else { ?>
+				    <a href="/user/login"><?php echo $this->appSettings->footerLoginLinkText; ?></a>
+				<?php 
+                } 
+                ?>
+		        <?php
+		        }
+				?>
+			    </p>
+			</div>
+		</div>
+		<div class="clear"></div>
+    </div><!-- container_16 -->
+</body>
+</html>

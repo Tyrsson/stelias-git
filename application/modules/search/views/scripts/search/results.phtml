@@ -1,0 +1,15 @@
+<h5>Results for "<?php echo $this->term; ?>" </h5>
+<?php 
+if(isset($this->paginator)) {
+    if(count($this->paginator) > 0) {
+        
+        foreach($this->paginator as $record) { ?>
+            <a href="<?php echo $this->scheme.'://'.$this->host . $record->url; ?>">link</a>
+            <h4>Title: <?php echo $record->title; ?></h4>
+            <br />
+            <p>Summary: <?php echo $record->summary; ?></p>
+  <?php }
+        
+        echo $this->paginationControl($this->paginator, 'Sliding', 'search_pagination_control.phtml', $params = array('term' => $this->term));
+    }
+}

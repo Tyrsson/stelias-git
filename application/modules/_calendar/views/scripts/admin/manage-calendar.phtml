@@ -1,0 +1,92 @@
+<?php 
+$this->headScript()->appendFile('/js-src/common.js', 'text/javascript');
+?>
+<div id="manage-event"></div>
+
+<?php
+if(isset($this->calUi)) {
+    echo $this->calUi;
+}
+?>
+
+<?php 
+$this->headStyle()->captureStart(); ?>
+
+select#selectmonth {
+
+}
+div#calendar_wrapper {
+	width:700px;
+    margin:0 auto 0 auto;
+	padding:20px 20px 40px;
+	background-color:#fefeff;
+	border-radius: 5px;
+	box-shadow: inset 0 0 8px #000000;
+
+}
+div#calendar_header {
+	width:800px;
+	margin:0 auto 0 auto;
+}
+h4.calendar-name {
+	font-weight:bold;
+}
+div#calendar_body {
+	margin:0 auto 0 auto;
+	text-align:center;
+}
+table.calendar {
+	width:650px;
+	height:auto;
+	background-color:#f6f6f6;
+	margin:0 auto 0 auto;
+	border: 1px solid black;
+}
+tr.weekdays {
+}
+tr.weekdays > td  {
+	width:100px;
+	padding:4px;
+	background-color:#79797b;
+	color:white;
+	border-top: 1px solid black;
+    border-right:1px solid black;
+	border-left:1px solid black;
+	box-shadow: inset 0 0 1px #000000;
+	/* border-top-right-radius: 5px;
+	border-top-left-radius: 5px; */
+}
+/* holds the days cell */
+tr.days > td {
+	background-color:#efeeee;
+	padding: 6px;
+	text-align: right;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+    border-right: 1px solid black;
+	border-left: 1px solid black;
+	box-shadow: inset 0 0 4px #000000;
+	text-shadow: #444 1px 2px 5px;
+}
+.days {
+	height:100px;
+    width:100px;
+	padding:50px;
+	/* background-color:yellow; */
+
+}
+.today a:link {
+	font-weight:bold;
+	color: #ee0c0c;
+	box-shadow: inset 0 0 20px red;
+	text-decoration:underline;
+}
+td.event a:link  {
+	background: transparent url(/reserved.png) center left no-repeat;
+	color:green;
+}
+td.todayisevent a:link {
+	background: transparent url(/reserved.png) center left no-repeat;
+	color: #ee0c0c;
+}
+<?php $this->headStyle()->captureEnd(); ?>

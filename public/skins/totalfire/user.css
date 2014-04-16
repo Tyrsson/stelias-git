@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+/******************************************************** Login **********************************************/
+#user-login-form {
+	background: url(./images/login-form.png) no-repeat;
+    /* min-height:288px; */
+	height: 288px;   
+	width: 349px;
+	margin: 20px auto;
+}
+#user-account-summary, #user-login-content, #user-register-content {
+    margin: 0 auto;
+    /* min-height: 500px; */
+    padding: 1em;
+    width: 100%;
+}
+/******************************************************** Register **********************************************/
+/* #user-register-content {
+	min-height: 500px;
+    overflow:hidden;
+} */
+
+#user-register-form {
+	background: url(./images/register-form.png) 0 0 no-repeat;
+	height: 592px;
+	width: 349px;
+	margin: 20px auto;
+}
+
+form {
+	padding: 20px;
+	margin-left: 20px;
+	margin-top: -18px;
+}
+
+fieldset {
+	line-height: 34px;
+}
+
+dt {
+	margin-top: 10px;
+}
+
+input[type="text"] {
+	/* width: 86%; */
+	background-color: white;
+	border: 1px #CCC solid;
+	height: 30px;
+}
+
+input[type="password"] {
+	/* width: 86%; */
+	background-color: white;
+	border: 1px #CCC solid;
+	height: 30px;
+}
+
+input[type="submit"] {
+	background: url(./images/button-sprite.png) 0 0 no-repeat;
+	width: 106px;
+	height: 39px;
+	border: none;
+	color: white;
+	font-size: 15px;
+	font-family: 'Open Sans Condensed', sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.submit {
+	background: url(./images/button-sprite.png) 0 0 no-repeat;
+	width: 106px;
+	height: 39px;
+	border: 0;
+}
+.submit:hover {
+	background: url(./images/button-sprite.png) 0 -37px no-repeat;
+}

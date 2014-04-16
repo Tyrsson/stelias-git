@@ -1,0 +1,8 @@
+<configs>
+    <admin-filemanager>
+        <manage-files>
+            <label>File Manager</label>
+            <uri>/admin/filemanager</uri>
+        </manage-files>
+    </admin-filemanager>
+</configs>

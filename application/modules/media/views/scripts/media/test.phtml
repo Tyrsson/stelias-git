@@ -1,0 +1,30 @@
+<div id="page-wrapper">
+		<div id="page-content">
+
+<?php 
+if(isset($this->data->image))
+{
+    $image = $this->data->basePath . $this->data->image;
+}
+else {
+    $image = $this->data->basePath . 'prod-placeholder.png';
+}
+?>
+
+<h2><?php echo isset($this->data->albumName) ? $this->data->albumName : 'Album Name not found'; ?></h2>
+
+<p><?php echo isset($this->data->content) ? $this->data->content : 'Content not found'; ?></p>
+
+<div id="widget-container">
+
+		<img src="<?php echo $image; ?>" />
+		<img src="<?php echo $image; ?>" />
+		<img src="<?php echo $image; ?>" />
+		<img src="<?php echo $image; ?>" />
+		<img src="<?php echo $image; ?>" />
+		<img src="<?php echo $image; ?>" />
+
+</div>
+
+		</div><!-- close content -->	
+</div><!-- action_wrapper  -->

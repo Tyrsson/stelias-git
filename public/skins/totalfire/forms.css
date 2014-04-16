@@ -1,0 +1,81 @@
+form {
+    margin-left: 20px;
+}
+
+fieldset {
+    line-height: 34px;
+}
+dt {
+    margin-top: 10px;
+}
+/**** User Registration and Login forms ****/
+#login dl.zend_form, #register dl.zend_form {
+	padding:20px;
+}
+#register, #login {
+	width: 349px;
+    margin: 20px auto;
+}
+#register {
+	background: url(./images/register-form.png) 0 0 no-repeat;
+    height: 592px;
+}
+#login {
+    background: url(./images/login-form.png) 0 0 no-repeat;
+    height: 288px;
+}
+#login dl.zend_form dd#submit-element input#submit,
+#register dl.zend_form dd#submit-element input#submit,
+#contact dl.zend_form dd#submit-element input#submit
+{
+    background: url(./images/button-sprite.png) 0 0 no-repeat;
+    width: 106px;
+    height: 39px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+}
+#login dl.zend_form dd#username-element input#username,
+#login dl.zend_form dd#password-element input#password,
+#register dl.zend_form dd#userName-element input#userName,
+#register dl.zend_form dd#firstName-element input#firstName,
+#register dl.zend_form dd#lastName-element input#lastName,
+#register dl.zend_form dd#email-element input#email,
+#register dl.zend_form dd#passWord-element input#passWord,
+#register dl.zend_form dd#confirm_password-element input#confirm_password
+{
+	background-color: white;
+    border: 1px #CCC solid;
+    height: 30px;
+}
+
+/**** END USER FORMS ****/
+/**** Quick Search ****/
+#quicksearch {
+	width:220px;
+    height:30px;
+padding-right:10px;
+
+}
+#quicksearch dl {
+	display:block;
+}
+#quicksearch dl.zend_form dd#term-element input#term, #quicksearch dl.zend_form dd#search-element input#search {
+
+    display:inline-block;
+}
+#quicksearch dl.zend_form dd#term-element input#term {
+	/* margin:-20px 0 0 0; */
+    float:left;
+    display:inline-block;
+}
+#quicksearch dl.zend_form dd#search-element input#search {
+    margin:-23px 0 0 0;
+    float:right;
+}
+#contact {
+	/* height:800px; */
+}

@@ -1,0 +1,16 @@
+<config>
+    <admin-media>
+		<create-album>
+        	<label>Manage Albums</label>
+          	<uri>/admin/media/managealbums</uri>
+           	<resource>media.albums</resource>
+          	<privilege>media.manage</privilege>
+       	</create-album>
+       	<create-slider>
+       	    <label>Manage Slider</label>
+       	    <uri>/admin/slider</uri>
+       	    <resource>media.albums</resource>
+       	    <privilege>media.manage</privilege>
+       	</create-slider>
+    </admin-media>
+</config>

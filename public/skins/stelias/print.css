@@ -1,0 +1,35 @@
+/* master class identifiers */
+.PrintArea {
+
+}
+.printable {
+
+}
+.printable > h6 {
+	margin-top:10px;
+}
+/* Printable list */
+ul.printable, ul.printable li ul {
+	list-style: none;
+}
+ul.printable li {
+	margin-left:100px;
+    text-transform: uppercase;
+	line-height: 26px;
+}
+ul.printable li ul {
+	border: 1px solid #000;
+	width: 80%;
+}
+ul.printable li h6 {
+	margin: 20px 0 0 0;
+}
+ul.printable li ul li {
+    text-transform: none;
+	line-height: normal;
+	font-weight: 600;
+	margin-left: 10px;
+}
+ul.printable li h6, ul.printable li ul {
+	margin-left: 10px;
+}

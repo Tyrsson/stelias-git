@@ -1,0 +1,26 @@
+<div id="gb-success-content">
+	<div id="gb-success-form">
+<?php 
+$this->headMeta()->appendHttpEquiv('Refresh', '2;URL=http://'.$_SERVER['SERVER_NAME']);
+if($this->messages) {
+	echo implode($this->messages);
+}
+?>
+	</div>
+</div>
+<?php $this->headStyle()->captureStart(); ?>
+#gb-success-content {
+	width: 270px;
+	margin: 80px auto;
+	border: 3px solid #003861;
+	padding: 30px;
+}
+#gb-success-form {
+height: auto;
+}
+#success-message {
+width:100%;
+padding:50px;
+line-height:20px;
+}
+<?php $this->headStyle()->captureEnd(); ?>
