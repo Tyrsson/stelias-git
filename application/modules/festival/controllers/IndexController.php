@@ -106,6 +106,10 @@ class Festival_IndexController extends System_Controller_Action
             $this->orders = $this->orderTable->fetchAll();
         }
     }
+    public function successAction()
+    {
+        
+    }
     public function processOrderData($postData)
     {
         $items = array();
