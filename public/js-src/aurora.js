@@ -115,7 +115,8 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 	    // bind form using ajaxForm
-	    $('#order-form').ajaxForm( { beforeSubmit: validate, success: success } );
+	
+	   // $('#order-form').ajaxForm( { beforeSubmit: validate, success: success } );
 });
 
 function validate(formData, jqForm, options) {

@@ -1,0 +1,380 @@
+<?php
+
+$currency = new Zend_Currency('en_US');
+$currencyHelper = new Zend_View_Helper_Currency($currency);
+$this->items = new Festival_Model_MenuItems();
+$this->menuItems = $this->items->fetchItems(4);
+
+?>
+<?php
+if(!IS_MOBILE) {
+?>
+<script type="text/javascript">
+//ordering form calculations
+jQuery(document).ready(function() {
+	// update the plug-in version
+	jQuery("#idPluginVersion").text(jQuery.Calculation.version);
+
+	// bind the recalc function to the quantity fields
+	jQuery("input[name^=qty_item_]").bind("keyup", recalc);
+	// run the calculation function now
+	recalc();
+	// automatically update the "#totalSum" field every time
+	// the values are changes via the keyup event
+	jQuery("input[name^=sum]").sum("keyup", "#totalSum");
+	// automatically update the "#totalAvg" field every time
+	// the values are changes via the keyup event
+	jQuery("input[name^=avg]").avg({
+		bind:"keyup",
+		selector: "#totalAvg",
+		onParseError: function(){ this.css("backgroundColor", "#cc0000"); },
+	    onParseClear: function (){ this.css("backgroundColor", ""); }
+	});
+	// automatically update the "#minNumber" field every time
+	// the values are changes via the keyup event
+	jQuery("input[name^=min]").min("keyup", "#numberMin");
+	// automatically update the "#minNumber" field every time
+	// the values are changes via the keyup event
+	jQuery("input[name^=max]").max("keyup", { selector: "#numberMax", oncalc: function (value, options) {
+																			// you can use this to format the value
+		                                                                    jQuery(options.selector).val(value);
+																		 }
+						    });
+	// this calculates the sum for some text nodes
+	jQuery("#idTotalTextSum").click(function (){
+							    // get the sum of the elements
+								var sum = jQuery(".textSum").sum();
+								// update the total
+								jQuery("#totalTextSum").text("$" + sum.toString());
+							   }
+							  );
+	// this calculates the average for some text nodes
+	jQuery("#idTotalTextAvg").click(function (){
+								// get the average of the elements
+								var avg = jQuery(".textAvg").avg();
+								// update the total
+								jQuery("#totalTextAvg").text(avg.toString());
+							   });
+	});
+
+	// function recalc *
+	// the equation to use for the calculation,
+	// define the variables used in the equation, these can be a jQuery object
+	// define the formatting callback, the results of the calculation are passed to this function
+	// return the number as a dollar amount
+	function recalc(){
+		jQuery("[id^=total_item]").calc("qty * price", { qty: jQuery("input[name^=qty_item_]"), price: jQuery("[id^=price_item_]") }, function (s){ return "$" + s.toFixed(2); },
+				// define the finish callback, this runs after the calculation has been complete
+				function ($this){
+				// sum the total of the $("[id^=total_item]") selector
+				var sum = $this.sum();
+				// round the results to 2 digits
+				jQuery("#grandTotal").text("$" + sum.toFixed(2));
+	});
+}
+</script>
+<div class="box" style="min-width: 900px;">
+<?php
+$this->allow = true;
+if($this->allow) { // if its time to allow ordering this will be true
+?>
+<div id="validation-dialog">
+	<div id="dialog-text"></div>
+</div>
+    <form id="order-form" method="post" action="" enctype="application/x-www-form-urlencoded">
+    	<table class="order">
+    	    <caption>ST Elias Food Festival Delivery / Pick Up Order Form</caption>
+    	    <tr>
+    	        <td>
+    	            <table id="delivery-options">
+    	                <caption>
+    	                    <?php
+                            echo $this->formNote('delivery-options-note', 'Delivery / Pickup Options:');
+                            ?>
+                        </caption>
+    	                <thead>
+    	                    <tr>
+    	                        <th><?php echo $this->formNote(null, 'Order Type (required)'); ?></th>
+        	                    <th><?php echo $this->formNote(null, 'Pickup / Delivery Time'); ?></th>
+    	                    </tr>
+    	                </thead>
+    	                <tbody>
+    	                    <tr>
+    	                        <td>
+        	                        <?php echo $this->formSelect('type', 'us', array('onchange' => 'getAddressForm()'), array(0 => '--', 'pickup' => 'Pick Up', 'delivery' => 'Delivery')); ?>
+        	                    </td>
+        	                    <td>
+        	                        <?php
+        	                        //$sParts = explode('/', $this->appSettings->orderingStartDay);
+        	                        //$eParts = explode('/', $this->appSettings->orderingEndDay);
+        	                        //$start = new Zend_Date(array('month' => $sParts[0], 'day' => $sParts[1], 'year' => $sParts[2]));
+        	                        //$end = new Zend_Date(array('month' => $eParts[0], 'day' => $eParts[1], 'year' => $eParts[2]));
+        	                        //$min = $end->sub('1', Zend_Date::DAY_OF_YEAR);
+        	                        //Zend_Debug::dump($min->get(Zend_Date::DAY_SHORT));
+        	                        //$max = $start->add('1', Zend_Date::DAY_OF_YEAR);
+        	                       // echo $this->datePicker('day', '', array('dateFormat' => 'yyyy/mm/dd', 'minDate' => '2013/04/12', 'maxDate' => '2013/04/13')); ?>
+        	                        <?php echo $this->formText('day');?>
+        	                        <?php echo $this->formText('time'); ?>
+        	                    </td>
+        	                    <td></td>
+    	                    </tr>
+    	                </tbody>
+    	            </table>
+    	        </td>
+    	    </tr>
+    	    <tr>
+    	        <td>
+    	            <table id="personal-info">
+    	                <caption><?php echo $this->formNote('personal-info-note', 'Personal Information:'); ?></caption>
+    	                <thead>
+    	                    <tr>
+    	                        <th><?php echo $this->formLabel('name', 'Order\'s Name');?></th>
+    	                        <th><?php echo $this->formLabel('email', 'Email Address');?></th>
+                                <th><?php echo $this->formLabel('phone', 'Phone Number'); ?></th>
+                                <th><?php echo $this->formLabel('cell', 'Cellular Number'); ?></th>
+                                <th><?php echo $this->formLabel('econtact', 'Contact Person (in case of questions / problems)'); ?></th>
+    	                    </tr>
+    	                </thead>
+    	                <tbody>
+    	                    <tr>
+    	                        <td><?php echo $this->formText('name');?></td>
+    	                        <td><?php echo $this->formText('email');?></td>
+                                <td><?php echo $this->formText('phone'); ?></td>
+                                <td><?php echo $this->formText('cell'); ?></td>
+                                <td><?php echo $this->formText('econtact'); ?></td>
+    	                    </tr>
+    	                </tbody>
+    	            </table>
+    	        </td>
+    	    </tr>
+    	    <tr>
+    	        <td id="address-info"><!-- table gets ajaxed in here -->
+    	        </td>
+    	    </tr>
+    	    <tr>
+    	        <td>
+    	            <table id="menu">
+    	                <caption>Menu</caption>
+    	                <thead>
+    	                    <tr>
+    	                        <th>Item</th>
+    	                        <th colspan="2">Unit Price</th>
+    	                        <th colspan="2">NO.</th>
+    	                        <th>Total</th>
+    	                    </tr>
+    	                </thead>
+    	                <tbody>
+    	                <?php
+    	                // item logic
+    	                $itemsModel = new Festival_Model_MenuItems();
+    	                $items = $itemsModel->fetchCurrentMenu();
+    	                //Zend_Debug::dump($items);
+    	                ?>
+    	                <?php
+    	                foreach($items as $item) {
+                            if(!(bool) $item->pickupOnly) {
+                        ?>
+
+                            <tr class="item">
+    	                        <td class="desc">
+    	                        <h5><?php echo $item->itemName; ?></h5>
+    	                        <?php echo $item->itemDesc; ?></td>
+    	                        <td id="price_item_<?php echo $item->id; ?>" class="price"><?php echo $currencyHelper->currency($item->price); ?></td>
+    	                        <td class="times">X</td>
+    	                        <td><?php echo $this->formText("qty_item_$item->id", null, array('size' => '3'))?></td>
+    	                        <td class="equals">&nbsp;=&nbsp;</td>
+    	                        <td id="total_item_<?php echo $item->id; ?>"><?php echo $currencyHelper->currency(0.00); ?></td>
+    	                    </tr>
+                        <?php
+                            }
+                        }
+    	                ?>
+    	                    <tr>
+    	                        <td colspan="3">(Payment at time of delivery or pickup only)</td>
+    	                        <td>Grand Total</td>
+    	                        <td>&nbsp;=&nbsp;</td>
+    	                        <td id="grandTotal"><?php echo $currencyHelper->currency(0.00); ?></td>
+
+    	                    </tr>
+    	                    <tr>
+    	                        <td>&nbsp;</td>
+    			                <td>&nbsp;</td>
+    			                <td>&nbsp;</td>
+    			                <td>&nbsp;</td>
+    	                        <td colspan="2"><?php echo $this->formSubmit('placeOrder', 'Place Order')?></td>
+    	                    </tr>
+    	                </tbody>
+    	            </table>
+    	        </td>
+    	    </tr>
+    	</table>
+    </form>
+<?php
+}
+else  {
+?>
+<?php
+    if(isset($this->appSettings->festivalStartNotice) && !empty($this->appSettings->festivalStartNotice) && !$this->allow) {
+?>
+    <span class="system-notice"><?php echo $this->appSettings->festivalStartNotice; ?></span>
+<?php
+    }
+
+}
+?>
+
+</div>
+<?php
+} else { // mobile
+?>
+
+<div class="grid_16">
+<?php
+$this->allow = true;
+if($this->allow) { // if its time to allow ordering this will be true
+?>
+    <form id="order-form" method="post" action="" enctype="application/x-www-form-urlencoded">
+    	<table class="order">
+    	    <caption>ST Elias Food Festival Delivery / Pick Up Order Form</caption>
+    	    <tr>
+    	        <td>
+    	            <table id="delivery-options">
+    	                <caption>
+    	                    <?php
+                            echo $this->formNote('delivery-options-note', 'Delivery / Pickup Options:');
+                            ?>
+                        </caption>
+    	                <thead>
+    	                    <tr>
+    	                        <th><?php echo $this->formNote(null, 'Order Type (required)'); ?></th>
+        	                    <th><?php echo $this->formNote(null, 'Pick up / Delivery Day'); ?></th>
+        	                    <th><?php echo $this->formNote(null, 'Pick up / Delivery Time'); ?></th>
+    	                    </tr>
+    	                </thead>
+    	                <tbody>
+    	                    <tr>
+    	                        <td>
+        	                        <?php echo $this->formSelect('type', 'us', array('onchange' => 'getAddressForm()'), array(0 => '--', 'pickup' => 'Pick Up', 'delivery' => 'Delivery')); ?>
+        	                    </td>
+        	                    <td>
+        	                        <?php echo $this->formSelect('day', 'us', null, array('friday' => 'Friday', 'saturday' => 'Saturday')); ?>
+        	                    </td>
+        	                    <td>
+        	                        <?php
+        	                        echo $this->formSelect('meridiem', 'us', null, array('am' => 'A.M.', 'pm' => 'P.M.'));
+        	                        echo $this->formLabel('hour', 'Hour');
+        	                        echo $this->formSelect('hour', 'us', null, range(1,12));
+        	                        echo $this->formLabel('minutes', 'Minutes');
+        	                        echo $this->formSelect('minutes', 'us', null, range(1,60));
+        	                        ?>
+        	                    </td>
+    	                    </tr>
+    	                </tbody>
+    	            </table>
+    	        </td>
+    	    </tr>
+    	    <tr>
+    	        <td>
+    	            <table id="personal-info">
+    	                <caption><?php echo $this->formNote('personal-info-note', 'Personal Information:'); ?></caption>
+    	                <thead>
+    	                    <tr>
+    	                        <th><?php echo $this->formLabel('name', 'Order\'s Name');?></th>
+    	                        <th><?php echo $this->formLabel('email', 'Email Address');?></th>
+                                <th><?php echo $this->formLabel('phone', 'Phone Number'); ?></th>
+                                <th><?php echo $this->formLabel('cell', 'Cellular Number'); ?></th>
+                                <th><?php echo $this->formLabel('econtact', 'Contact Person (in case of questions / problems)'); ?></th>
+    	                    </tr>
+    	                </thead>
+    	                <tbody>
+    	                    <tr>
+    	                        <td><?php echo $this->formText('name');?></td>
+    	                        <td><?php echo $this->formText('email');?></td>
+                                <td><?php echo $this->formText('phone'); ?></td>
+                                <td><?php echo $this->formText('cell'); ?></td>
+                                <td><?php echo $this->formText('econtact'); ?></td>
+    	                    </tr>
+    	                </tbody>
+    	            </table>
+    	        </td>
+    	    </tr>
+    	    <tr>
+    	        <td id="address-info"><!-- table gets ajaxed in here -->
+    	        </td>
+    	    </tr>
+    	    <tr>
+    	        <td>
+    	            <table id="menu">
+    	                <caption>Menu</caption>
+    	                <thead>
+    	                    <tr>
+    	                        <th>Item</th>
+    	                        <th colspan="2">Unit Price</th>
+    	                        <th colspan="2">NO.</th>
+    	                        <th>Total</th>
+    	                    </tr>
+    	                </thead>
+    	                <tbody>
+    	                <?php
+    	                // item logic
+    	                $itemsModel = new Festival_Model_MenuItems();
+    	                $items = $itemsModel->fetchCurrentMenu();
+    	                //Zend_Debug::dump($items);
+    	                ?>
+    	                <?php
+    	                foreach($items as $item) {
+                            if(!(bool) $item->pickupOnly) {
+                        ?>
+
+                            <tr class="item">
+    	                        <td class="desc">
+    	                        <h5><?php echo $item->itemName; ?></h5>
+    	                        <?php echo $item->itemDesc; ?></td>
+    	                        <td id="price_item_<?php echo $item->id; ?>" class="price"><?php echo $currencyHelper->currency($item->price); ?></td>
+    	                        <td class="times">X</td>
+    	                        <td><?php echo $this->formText("qty_item_$item->id", null, array('size' => '3'))?></td>
+    	                        <td class="equals">&nbsp;=&nbsp;</td>
+    	                        <td id="total_item_<?php echo $item->id; ?>"><?php echo $currencyHelper->currency(0.00); ?></td>
+    	                    </tr>
+                        <?php
+                            }
+                        }
+    	                ?>
+    	                    <tr>
+    	                        <td colspan="3">(Payment at time of delivery or pickup only)</td>
+    	                        <td>Grand Total</td>
+    	                        <td>&nbsp;=&nbsp;</td>
+    	                        <td id="grandTotal"><?php echo $currencyHelper->currency(0.00); ?></td>
+
+    	                    </tr>
+    	                    <tr>
+    	                        <td>&nbsp;</td>
+    			                <td>&nbsp;</td>
+    			                <td>&nbsp;</td>
+    			                <td>&nbsp;</td>
+    	                        <td colspan="2"><?php echo $this->formSubmit('placeOrder', 'Place Order')?></td>
+    	                    </tr>
+    	                </tbody>
+    	            </table>
+    	        </td>
+    	    </tr>
+    	</table>
+    </form>
+<?php
+}
+else  {
+?>
+<?php
+    if(isset($this->appSettings->festivalStartNotice) && !empty($this->appSettings->festivalStartNotice)) {
+?>
+    <span class="system-notice"><?php echo $this->appSettings->festivalStartNotice; ?></span>
+<?php
+    }
+
+}
+?>
+</div>
+
+<?php
+}
+?>

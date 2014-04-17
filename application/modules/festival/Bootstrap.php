@@ -14,4 +14,7 @@ class Festival_Bootstrap extends Dxcore_Application_Module_Bootstrap
     	);
     	return $this->_resourceLoader;
     }
+    protected function _initOrderingActionHelper() {
+        Zend_Controller_Action_HelperBroker::addHelper(new Stelias_Controller_Action_Helper_Ordering());
+    }
 }

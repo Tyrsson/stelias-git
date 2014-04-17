@@ -20,9 +20,9 @@ class Pages_Bootstrap extends Dxcore_Application_Module_Bootstrap
     protected function _initFestivalActionHelper() {
         Zend_Controller_Action_HelperBroker::addHelper(new Stelias_Controller_Action_Helper_Festival());
     }
-    protected function _initOrderingActionHelper() {
-        Zend_Controller_Action_HelperBroker::addHelper(new Stelias_Controller_Action_Helper_Ordering());
-    }
+//     protected function _initOrderingActionHelper() {
+//         Zend_Controller_Action_HelperBroker::addHelper(new Stelias_Controller_Action_Helper_Ordering());
+//     }
     protected function _initBulletingActionHelper() {
         Zend_Controller_Action_HelperBroker::addHelper(new Stelias_Controller_Action_Helper_Bulletin());
     }

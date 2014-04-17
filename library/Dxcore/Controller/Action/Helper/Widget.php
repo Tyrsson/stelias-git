@@ -121,6 +121,10 @@ abstract class Dxcore_Controller_Action_Helper_Widget extends Zend_Controller_Ac
         }
         return $view;
     }
+//     public function __toString()
+//     {
+
+//     }
     abstract public function buildWidget();
     public function renderWidget(&$data, $renderFromModule = 'default') {
         $this->view->{strtolower($this->widgetName)} = $this->view->partial("$this->template.$this->suffix", $renderFromModule, $data);

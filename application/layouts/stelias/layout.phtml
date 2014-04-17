@@ -92,7 +92,7 @@ require([
                     
                     <?php
                         if(!IS_MOBILE) {
-                        echo $this->appSettings->enableLinkLogo ? '<a href="/"><img style="width: 100%; max-width: 415px; max-height: 200px;" src="/skins/'.$this->skinName.'/images/logo-small.png" alt="'.$this->appSettings->siteName.'" /></a>' : '<img src="/skins/'.$this->skinName.'/images/logo-small.png" alt="'.$this->appSettings->siteName.'" />';
+                        echo $this->appSettings->enableLinkLogo ? '<a href="/"><img style="width: 100%; max-width: 415px; max-height: 200px;" src="/skins/'. Zend_Registry::get('skinName') .'/images/logo-small.png" alt="'.$this->appSettings->siteName.'" /></a>' : '<img src="/skins/'.$this->skinName.'/images/logo-small.png" alt="'.$this->appSettings->siteName.'" />';
                         }
                      ?>
                      </div>
