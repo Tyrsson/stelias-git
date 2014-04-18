@@ -19,17 +19,9 @@ class Festival_Form_MenuItems extends Zend_Form
 	    $pickupOnly->setCheckedValue(1);
 	    $pickupOnly->setChecked(true);
 	    $pickupOnly->setLabel('Pickup Only Item?');
-
-// 	    $this->addElement(
-// 	    	'Checkbox',
-// 	        'pickupOnly',
-// 	        array(
-// 	    	'label' => 'Pickup Only',
-// 	        'checkedValue' => 1,
-// 	        'uncheckedValue' => 0,
-// 	        'checked' => true
-// 	    )
-// 	    );
+	    
+	    $order = new Zend_Form_Element_Text('order');
+	    $order->setLabel('Item Order in menu');
 	    
 	    $itemName = new Zend_Form_Element_Text('itemName');
 	    $itemName->setLabel('Item Name')->setRequired(true);
@@ -46,6 +38,6 @@ class Festival_Form_MenuItems extends Zend_Form
 	    $submit->setAttribs(array('id' => 'addmenuitem'));
 	    //$submit->setLabel('Submit');
 	    
-	    $this->addElements(array($itemId, $menuId, $cmd, $itemType, $pickupOnly, $itemName, $itemDesc, $price, $submit));
+	    $this->addElements(array($itemId, $menuId, $cmd, $itemType, $pickupOnly, $order, $itemName, $itemDesc, $price, $submit));
 	}
 }

@@ -45,7 +45,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 //             'password' => 'JTEts_5BfiF1',
 //             'dbname' => 'steliaso_newcms'
                 'username' => 'root',
-                'password' => 'root',
+                'password' => 'user742',
                 'dbname' => 'stelias'
         );
         $db = Zend_Db::factory('PDO_MYSQL', $options);
